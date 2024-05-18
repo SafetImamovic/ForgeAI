@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="fd"
+                 name="ForgeAI Dokumentacija"
+                 start-page="Uvod.md">
+
+    <toc-element topic="Uvod.md"/>
+    <toc-element topic="Detalji-Projekta.md"/>
+    <toc-element topic="Analiza-Tržišta.md"/>
+    <toc-element topic="Empty-MD-Topic.md"/>
+    <toc-element topic="Analiza-Targeta.md"/>
+    <toc-element topic="Pravno-Zakonska-Regulativa.md"/>
+    <toc-element topic="starter.md"/>
+</instance-profile>
