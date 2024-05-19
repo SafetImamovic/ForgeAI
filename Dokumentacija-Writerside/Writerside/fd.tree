@@ -12,8 +12,8 @@
     <toc-element topic="Empty-MD-Topic.md"/>
     <toc-element topic="Analiza-Targeta.md"/>
     <toc-element topic="Pravno-Zakonska-Regulativa.md"/>
-    <toc-element topic="starter.md"/>
     <toc-element topic="Dijagrami.md">
-        <toc-element topic="Use-Case-Dijagrami.md"/>
     </toc-element>
+    <toc-element topic="Use-Case-Dijagrami.md"/>
+    <toc-element topic="starter.md"/>
 </instance-profile>
