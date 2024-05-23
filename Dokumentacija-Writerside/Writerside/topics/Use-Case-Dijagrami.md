@@ -1,9 +1,12 @@
-# Use Case Dijagrami
+# 1. Use Case Dijagrami
 
 ## Korisnik | AI MIDI Generator
 
 ```plantuml
 @startuml
+
+scale 640 width
+
 left to right direction
 skinparam packageStyle rectangle
 actor "Korisnik" as U
@@ -39,6 +42,9 @@ Ukida -- P
 
 ```plantuml
 @startuml
+
+scale 640 width
+
 left to right direction
 skinparam packageStyle rectangle
 actor "Korisnik" as U

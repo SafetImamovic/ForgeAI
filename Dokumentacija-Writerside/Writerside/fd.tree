@@ -13,7 +13,14 @@
     <toc-element topic="Analiza-Targeta.md"/>
     <toc-element topic="Pravno-Zakonska-Regulativa.md"/>
     <toc-element topic="Dijagrami.md">
+        <toc-element topic="Use-Case-Dijagrami.md"/>
+        <toc-element topic="2-Dijagrami-Aktivnosti.md"/>
+        <toc-element topic="3-Domain-Model.md"/>
+        <toc-element topic="Dijagrami-Klasa.md"/>
+        <toc-element topic="4-Dijagrami-Komponenti.md"/>
+        <toc-element topic="ER-Dijagrami.md"/>
+        <toc-element topic="6-Dijagrami-Po-Izboru.md"/>
+        <toc-element topic="7-Deployment-Dijagrami.md"/>
     </toc-element>
-    <toc-element topic="Use-Case-Dijagrami.md"/>
     <toc-element topic="starter.md"/>
 </instance-profile>
