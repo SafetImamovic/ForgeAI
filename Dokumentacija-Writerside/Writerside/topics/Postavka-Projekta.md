@@ -77,12 +77,12 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 - **Definicija Prilagođenog Korisničkog Modela**: Prilagođeni korisnički model nazvan `MyUser` definiran je u `models.py` datoteci Django aplikacije. Ovo omogućava prilagođavanje polja korisnika i ponašanja, pružajući fleksibilnost za autentifikaciju i upravljanje korisnicima.
 
 [
-models.py
+`models.py`
 ](https://github.com/SafetImamovic/ForgeAI/blob/58c384e4e42788d398ac2ee10e7c9126d02fe8d1/ForgeAI_django/backend_logika/models.py)
 
 - **Implementacija Pogleda za Autentifikaciju**: Pogledi za funkcionalnosti prijave i prijave korisnika implementirani su u `views.py` datoteci. Ovi pogledi komuniciraju sa Supabase klijentom kako bi sigurno rukovali operacijama autentifikacije korisnika.
 
-[views.py](https://github.com/SafetImamovic/ForgeAI/blob/58c384e4e42788d398ac2ee10e7c9126d02fe8d1/ForgeAI_django/backend_logika/views.py)
+[`views.py`](https://github.com/SafetImamovic/ForgeAI/blob/58c384e4e42788d398ac2ee10e7c9126d02fe8d1/ForgeAI_django/backend_logika/views.py)
 
 
 ## HTML Predlošci
@@ -112,7 +112,7 @@ models.py
 
 - **Konfiguracija URL-a za Autentifikaciju**: URL obrasci su ažurirani u `backend_logika/urls.py` datoteci kako bi se mapirali pogledi autentifikacije na odgovarajuće endpointe.
 
-[urls.py](https://github.com/SafetImamovic/ForgeAI/blob/58c384e4e42788d398ac2ee10e7c9126d02fe8d1/ForgeAI_django/backend_logika/urls.py)
+[`urls.py`](https://github.com/SafetImamovic/ForgeAI/blob/58c384e4e42788d398ac2ee10e7c9126d02fe8d1/ForgeAI_django/backend_logika/urls.py)
 
 ## Operacije sa Bazom Podataka
 

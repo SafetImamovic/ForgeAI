@@ -11,6 +11,17 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from supabase import create_client, Client
+import supabase
+from dotenv import load_dotenv
+
+load_dotenv()
+
+SUPABASE_URL = os.getenv('SUPABASE_URL', 'your-supabase-url')
+SUPABASE_KEY = os.getenv('SUPABASE_KEY', 'your-supabase-key')
+
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'backend_logika',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +133,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'backend_logika.MyUser';
