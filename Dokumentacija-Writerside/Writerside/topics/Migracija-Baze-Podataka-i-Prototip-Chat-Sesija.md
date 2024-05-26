@@ -105,96 +105,7 @@ Kreirana je nova Django aplikacija pod nazivom `prompting_handler` za upravljanj
 
 #### Prikazi
 
-Datoteka `views.py` u `prompting_handler` aplikaciji sadrži sljedeći kod:
-
-```python
-from supabase import Client
-import supabase
-from ForgeAI_django import settings
-from django.shortcuts import render, redirect
-from .forms import ChatForm
-from django.contrib import messages
-from .data_klase import ChatSesija, Poruka
-
-supabase: Client = settings.supabase
-
-def index(request):
-    user = request.session.get('user')
-    if not user:
-        messages.error(request, 'Morate biti prijavljeni da biste pristupili sesijama četa.')
-        return redirect('login')
-    
-    response = supabase.table('chat_sesije').select('*').eq('user_id', user['id']).execute()
-    chat_sessions_data = response.data
-    
-    chat_sessions = []
-    for session_data in chat_sessions_data:
-        chat_sessions.append(ChatSesija(
-            id=session_data['id'],
-            session_name=session_data['sesija_ime'],
-            messages=[],
-            created_at=session_data['created_at']
-        ))
-
-    return render(request, 'chatbot/index.html', {'chat_sessions': chat_sessions})
-
-def chat_session(request, session_id):
-    user = request.session.get('user')
-    if not user:
-        messages.error(request, 'Morate biti prijavljeni da biste pristupili ovoj sesiji četa.')
-        return redirect('login')
-    
-    session_response = supabase.table('chat_sesije').select('*').eq('id', session_id).eq('user_id', user['id']).execute()
-    
-    if not session_response.data:
-        messages.error(request, 'Sesija četa nije pronađena ili nemate dozvolu za pristup.')
-        return redirect('index')
-    
-    session_data = session_response.data[0]
-    chat_session = ChatSesija(
-        id=session_data['id'],
-        session_name=session_data['sesija_ime'],
-        messages=[],
-        created_at=session_data['created_at']
-    )
-    
-    messages_response = supabase.table('poruke').select('*').eq('chat_sesija_id', session_id).order('created_at', desc=False).execute()
-    messages_data = messages_response.data
-    jeKorisnik = supabase.table('poruke').select('je_korisnik').eq('chat_sesija_id', session_id).execute()
-
-    for message_data in messages_data:
-        chat_session.messages.append(Poruka(
-            message_text=message_data['poruka_text'],
-            is_user=message_data['je_korisnik'],
-            timestamp=message_data['created_at']
-        ))
-    
-    if request.method == "POST":
-        form = ChatForm(request.POST)
-        if form.is_valid():
-            user_input = form.cleaned_data['user_input']
-            supabase.table('poruke').insert({'chat_sesija_id': session_id, 'poruka_text': user_input, 'je_korisnik': True}).execute()
-            # Dodajte logiku za dobijanje odgovora bot-a
-            bot_response = "Ovo je odgovor bot-a."
-            supabase.table('poruke').insert({'chat_sesija_id': session_id, 'poruka_text': bot_response, 'je_korisnik': False}).execute()
-            return redirect('chat_session', session_id=session_id)
-    else:
-        form = ChatForm
-    return render(request, 'chatbot/chat_session.html', {'chat_session': chat_session, 'messages': messages, 'je_korisnik': jeKorisnik, 'form': form})
-
-def create_session(request):
-    user = request.session.get('user')
-    if not user:
-        messages.error(request, 'Morate biti prijavljeni da biste kreirali sesiju četa.')
-        return redirect('login')
-    
-    if request.method == "POST":
-        session_name = request.POST['session_name']
-        response = supabase.table('chat_sesije').insert({'sesija_ime': session_name, 'user_id': user['id']}).execute()
-        session_id = response.data[0]['id']
-        return redirect('chat_session', session_id=session_id)
-    return render(request, 'chatbot/create_session.html')
-```
+[Datoteka `views.py` u `prompting_handler` aplikaciji sadrži sljedeći kod](https://github.com/SafetImamovic/ForgeAI/blob/204b0333836cffa0203056fa6a9de14604ab3384/ForgeAI_django/prompting_handler/views.py)
 
 Objasnjenje:
 - **index**: Prikazuje listu sesija četa za prijavljenog korisnika.
@@ -266,36 +177,7 @@ Objasnjenje:
 
 #### Predložak za sesiju četa
 
-`chat_session.html`:
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Sesija četa - {{ chat_session.session_name }}</title>
-</head>
-<body>
-    <h1>Sesija četa: {{ chat_session.session_name }}</h1>
-    <div id="chat">
-        {% for message in chat_session.messages %}
-            <p><strong>
-                {% if message.is_user %}
-                    Korisnik
-                {% else %}
-                    OpenAI Bot
-                {% endif %}
-                :</strong> {{ message.message_text }} <small>({{ message.timestamp }})</small></p>
-        {% endfor %}
-    </div>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Pošalji</button>
-    </form>
-    <a href="{% url 'index' %}">Nazad na sesije</a>
-</body>
-</html>
-```
+[`chat_session.html`](https://github.com/SafetImamovic/ForgeAI/blob/204b0333836cffa0203056fa6a9de14604ab3384/ForgeAI_django/prompting_handler/templates/chatbot/chat_session.html)
 
 Objasnjenje:
 - Prikazuje naziv sesije četa i poruke.
@@ -304,26 +186,8 @@ Objasnjenje:
 
 #### Predložak za kreiranje sesije
 
-`create_session.html`:
+[`create_session.html`](https://github.com/SafetImamovic/ForgeAI/blob/204b0333836cffa0203056fa6a9de14604ab3384/ForgeAI_django/prompting_handler/templates/chatbot/create_session.html)
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Kreiranje nove sesije četa</title>
-</head>
-<body>
-    <h1>Kreirajte novu sesiju četa</h1>
-    <form method="post">
-        {% csrf_token %}
-        <label for="session_name">Naziv sesije:</label>
-        <input type="text" id="session_name" name="session_name">
-        <button type="submit">Kreiraj</button>
-    </form>
-    <a href="{% url 'index' %}">Nazad na sesije</a>
-</body>
-</html>
-```
 
 Objasnjenje:
 - Pruža formu za kreiranje nove sesije četa sa nazivom.
@@ -331,26 +195,8 @@ Objasnjenje:
 
 #### Indeks predložak
 
-`index.html`:
+[`index.html`](https://github.com/SafetImamovic/ForgeAI/blob/204b0333836cffa0203056fa6a9de14604ab3384/ForgeAI_django/prompting_handler/templates/chatbot/index.html)
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Interfejs za četbot</title>
-</head>
-<body>
-    <h1>Sesije četa</h1>
-    <ul>
-        {% for session in chat_sessions %}
-            <li><a href="{% url 'chat_session' session.id %}">{{ session.session_name }}</a> (Kreirano: {{ session.created_at }})</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'create_session' %}">Kreirajte novu sesiju</a>
-</body>
-</html>
-```
-
-##### Objasnjenje:
+Objasnjenje:
 - Prikazuje listu sesija četa sa linkovima ka svakoj sesiji.
 - Uključuje link za kreiranje nove sesije četa.
