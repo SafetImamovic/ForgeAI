@@ -25,5 +25,6 @@
     <toc-element topic="starter.md"/>
     <toc-element topic="Implementacija-Koda.md">
         <toc-element topic="Postavka-Projekta.md"/>
+        <toc-element topic="Migracija-Baze-Podataka-i-Prototip-Chat-Sesija.md"/>
     </toc-element>
 </instance-profile>

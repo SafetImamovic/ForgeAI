@@ -29,11 +29,13 @@ SUPABASE_KEY = os.getenv('SUPABASE_KEY', 'your-supabase-key')
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # or another backend of your choice
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_NAME = 'sessionid'
-SESSION_COOKIE_AGE = 1209600  # 2 weeks
-SESSION_SAVE_EVERY_REQUEST = True
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_SECURE = True  # Use True for HTTPS
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Lax'  # Can be 'Strict', 'Lax', or 'None'
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -60,8 +62,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'backend_logika',
-    'prompting_handler'
+    'prompting_handler',
+    'crispy_forms',
+    'crispy_bootstrap5'
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Session - {{ chat_session.session_name }}</title>
+</head>
+<body>
+    <h1>Chat Session: {{ chat_session.session_name }}</h1>
+    <div id="chat">
+        {% for message in chat_session.messages %}
+            <p><strong>
+                {% if message.is_user %}
+                    Korisnik
+                {% else %}
+                    OpenAI Bot
+                {% endif %}
+                :</strong> {{ message.message_text }} <small>({{ message.timestamp }})</small></p>
+        {% endfor %}
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+    <a href="{% url 'index' %}">Back to Sessions</a>
+</body>
+</html>

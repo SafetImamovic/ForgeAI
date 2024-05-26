@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot Interface</title>
+</head>
+<body>
+    <h1>Chatbot Sessions</h1>
+    <ul>
+        {% for session in chat_sessions %}
+            <li><a href="{% url 'chat_session' session.id %}">{{ session.session_name }}</a> (Created at: {{ session.created_at }})</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create_session' %}">Create New Session</a>
+</body>
+</html>
