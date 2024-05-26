@@ -15,13 +15,25 @@ import os
 from supabase import create_client, Client
 import supabase
 from dotenv import load_dotenv
+import Korisnik;
 
 load_dotenv()
+
+STATIC_URL = "static/"
+
+korisnik: Korisnik
+
 
 SUPABASE_URL = os.getenv('SUPABASE_URL', 'your-supabase-url')
 SUPABASE_KEY = os.getenv('SUPABASE_KEY', 'your-supabase-key')
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # or another backend of your choice
+SESSION_COOKIE_NAME = 'sessionid'
+SESSION_COOKIE_AGE = 1209600  # 2 weeks
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +50,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'backend_logika',
+    'prompting_handler'
 ]
 
 MIDDLEWARE = [
@@ -87,8 +99,12 @@ WSGI_APPLICATION = 'ForgeAI_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.environ['ENGINE'],
+        'HOST': os.environ['HOST'],
+        'NAME': os.environ['NAME'],
+        'USER': os.environ['USER'],
+        'PASSWORD': os.environ['PASSWORD'],
+        'PORT': os.environ['PORT'],
     }
 }
 

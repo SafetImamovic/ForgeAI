@@ -19,5 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('backend_logika.urls'))
+    path('', include('backend_logika.urls')),
+    path('prompt/', include('prompting_handler.urls'))
 ]

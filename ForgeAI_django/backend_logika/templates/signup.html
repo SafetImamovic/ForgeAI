@@ -1,5 +1,7 @@
 <form method="post">
     {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="name" name="name" required>
     <label for="email">Email:</label>
     <input type="email" name="email" required>
     <label for="password">Password:</label>

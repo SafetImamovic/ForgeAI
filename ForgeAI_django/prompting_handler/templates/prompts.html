@@ -1,0 +1,7 @@
+<form method="post">
+    {% csrf_token %}
+    <label for="prompt">Prompt:</label>
+    <input name="prompt" required>
+    <button type="submit">Send Prompt</button>
+    <h1>{{ info }}</h1>
+</form>
