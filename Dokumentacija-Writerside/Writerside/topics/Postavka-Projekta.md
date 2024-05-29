@@ -1,4 +1,4 @@
-# Postavke Projekta i Supabase Integracija
+# 10.1 Postavke Projekta i Supabase Integracija
 
 ## Inicijalizacija Projekta
 

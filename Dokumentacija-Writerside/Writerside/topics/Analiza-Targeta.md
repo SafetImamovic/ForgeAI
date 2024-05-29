@@ -1,4 +1,4 @@
-# Analiza Targeta
+# 5. Analiza Targeta
 
 ## Identifikacija Stakeholdera i Njihovih Zahtjeva
 
@@ -21,7 +21,7 @@
 1. **Developeri VST plugina:**
     - **Potrebna rješenja:**
         - Stabilna i efikasna implementacija plugina.
-        - Bešavna integracija s OpenAI API-jem.
+        - Integracija s OpenAI API-jem.
         - Efikasna obrada i konverzija JSON odgovora u MIDI format.
     - **Ciljevi:**
         - Osigurati visoku funkcionalnost i kvalitetu plugina.

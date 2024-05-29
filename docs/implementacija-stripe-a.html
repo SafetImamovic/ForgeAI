@@ -1,0 +1,220 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2024-05-29T21:12:28.1319835"><title>10.3 Implementacija Stripe-a | ForgeAI Dokumentacija</title><script type="application/json" id="virtual-toc-data">[{"id":"struktura-projekta","level":0,"title":"Struktura Projekta","anchor":"#struktura-projekta"},{"id":"kreiranje-aplikacije","level":0,"title":"Kreiranje Aplikacije","anchor":"#kreiranje-aplikacije"},{"id":"dodavanje-aplikacije-u-settings-py","level":0,"title":"Dodavanje Aplikacije u settings.py","anchor":"#dodavanje-aplikacije-u-settings-py"},{"id":"instalacija-stripe-paketa","level":0,"title":"Instalacija Stripe Paketa","anchor":"#instalacija-stripe-paketa"},{"id":"kreiranje-produkta-na-stripe-dashboard-u","level":0,"title":"Kreiranje Produkta na Stripe Dashboard-u","anchor":"#kreiranje-produkta-na-stripe-dashboard-u"},{"id":"konfiguracija-env-datoteke","level":0,"title":"Konfiguracija .env Datoteke","anchor":"#konfiguracija-env-datoteke"},{"id":"kreiranje-tabela-u-bazi-podataka","level":0,"title":"Kreiranje Tabela u Bazi Podataka","anchor":"#kreiranje-tabela-u-bazi-podataka"},{"id":"dodavanje-templates-direktorija-u-aplikaciju","level":0,"title":"Dodavanje Templates Direktorija u Aplikaciju","anchor":"#dodavanje-templates-direktorija-u-aplikaciju"},{"id":"dodavanje-koda-u-views-py","level":0,"title":"Dodavanje Koda u views.py","anchor":"#dodavanje-koda-u-views-py"},{"id":"kreiranje-url-mappings-u-urls-py","level":0,"title":"Kreiranje URL Mappings u urls.py","anchor":"#kreiranje-url-mappings-u-urls-py"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b259/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="10.3 Implementacija Stripe-a | ForgeAI Dokumentacija"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="ForgeAI Dokumentacija Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/implementacija-stripe-a.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="10.3 Implementacija Stripe-a | ForgeAI Dokumentacija"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/implementacija-stripe-a.html#webpage",
+    "url": "writerside-documentation/implementacija-stripe-a.html",
+    "name": "10.3 Implementacija Stripe-a | ForgeAI Dokumentacija",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "ForgeAI Dokumentacija Help"
+}</script><!-- End Schema.org --></head><body data-id="Implementacija-Stripe-a" data-main-title="10.3 Implementacija Stripe-a" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="Implementacija-Koda.md|10. Implementacija Koda"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>ForgeAI Dokumentacija  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="Implementacija-Stripe-a" id="Implementacija-Stripe-a.md">10.3 Implementacija Stripe-a</h1><section class="chapter"><h2 id="struktura-projekta" data-toc="struktura-projekta">Struktura Projekta</h2><div class="code-block" data-lang="none">
+/ForgeAI                    # root repozitorija
+    ├── /docs
+    ├── /Dokumentacija-Writerside
+    ├── /ForgeAI_django
+    │   ├── manage.py
+    │   ├── /ForgeAI_django
+    │   │   ├── __pycache__
+    │   │   ├── __init__.py
+    │   │   ├── asgi.py
+    │   │   ├── wsgi.py
+    │   │   ├── urls.py
+    │   │   ├── settings.py
+    │   ├── __pycache__
+    │   ├── /backend_logika
+    │   ├── /prompting_handler
+    │   ├── /stripe_pretplata
+    │   ├── Korisnik.py
+    ├── /ForgeAI_env
+    │   ├── /Scripts
+    │   │   ├── activate.bat
+    ├── /MIDI_python_parser
+    │   ├── chords.py
+    │   ├── custom_midi_gen.py
+    │   ├── drums.py
+    │   ├── main.py
+    │   ├── midi_to_format.py
+    ├── llama3_test.py
+    ├── .env
+    ├── .gitignore
+    ├── README.md
+</div></section><section class="chapter"><h2 id="kreiranje-aplikacije" data-toc="kreiranje-aplikacije">Kreiranje Aplikacije</h2><div class="code-block" data-lang="bash">
+python manage.py startapp stripe_pretplata
+</div><p id="-6t2132_1262">Ova komanda kreira novu Django aplikaciju pod nazivom <code class="code" id="-6t2132_1263">stripe_pretplata</code>.</p></section><section class="chapter"><h2 id="dodavanje-aplikacije-u-settings-py" data-toc="dodavanje-aplikacije-u-settings-py">Dodavanje Aplikacije u settings.py</h2><div class="code-block" data-lang="python">
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'backend_logika',
+    'prompting_handler',
+    'stripe_pretplata'
+]
+</div><p id="-6t2132_1265">Ovdje se dodaje <code class="code" id="-6t2132_1266">stripe_pretplata</code> aplikacija u listu instaliranih aplikacija u <code class="code" id="-6t2132_1267">settings.py</code> datoteci.</p></section><section class="chapter"><h2 id="instalacija-stripe-paketa" data-toc="instalacija-stripe-paketa">Instalacija Stripe Paketa</h2><div class="code-block" data-lang="bash">
+pip install stripe
+</div><p id="-6t2132_1269">Ova komanda instalira Stripe paket koji ćemo koristiti za integraciju plaćanja. Važno je napomenuti da se ovo pokreće unutar Python virtualnog okruženja.</p></section><section class="chapter"><h2 id="kreiranje-produkta-na-stripe-dashboard-u" data-toc="kreiranje-produkta-na-stripe-dashboard-u">Kreiranje Produkta na Stripe Dashboard-u</h2><ol class="list _decimal" id="-6t2132_1270" type="1"><li class="list__item" id="-6t2132_1271"><p><span class="control" id="-6t2132_1272">Dodavanje novog produkta</span>: U sekciji Product Catalogue dodajemo novi produkt.</p></li><li class="list__item" id="-6t2132_1273"><p><span class="control" id="-6t2132_1274">Postavljanje jedinstvenog ključa za cijenu</span>: Ključ za cijenu mora biti jedinstven jer se koristi u kodu za kasnije pretraživanje.</p></li><li class="list__item" id="-6t2132_1275"><p><span class="control" id="-6t2132_1276">Aktivacija Stripe Customer Portala</span>: Omogućava korisnicima da upravljaju svojim pretplatama putem Stripe-ovog korisničkog portala.</p></li></ol><section class="chapter"><h3 id="stripe-cli" data-toc="stripe-cli">Stripe CLI</h3><p id="-6t2132_1277">Instalacija Stripe CLI-a prema zvaničnoj dokumentaciji: <a href="https://docs.stripe.com/stripe-cli" id="-6t2132_1278" data-external="true" rel="noopener noreferrer">Stripe CLI Dokumentacija</a></p><p id="-6t2132_1279">Preuzimanje Stripe CLI za Windows: <a href="https://github.com/stripe/stripe-cli/releases/tag/v1.19.5" id="-6t2132_1280" data-external="true" rel="noopener noreferrer">Stripe CLI za Windows</a></p><p id="-6t2132_1281">Ekstraktovanje i postavljanje <code class="code" id="-6t2132_1282">stripe.exe</code> u <code class="code" id="-6t2132_1283">C:\Stripe</code> direktorij. Dodavanje <code class="code" id="-6t2132_1284">stripe.exe</code> u <code class="code" id="-6t2132_1285">Path</code> varijablu okruženja:</p><div class="code-block" data-lang="bash">
+$env:Path += &quot;;C:\Stripe\stripe.exe&quot;
+</div><p id="-6t2132_1287">Provjera Stripe CLI verzije:</p><div class="code-block" data-lang="bash">
+stripe --version
+</div></section></section><section class="chapter"><h2 id="konfiguracija-env-datoteke" data-toc="konfiguracija-env-datoteke">Konfiguracija .env Datoteke</h2><p id="-6t2132_1289">U <code class="code" id="-6t2132_1290">.env</code> datoteku dodajemo Stripe API ključeve:</p><div class="code-block" data-lang="none">
+STRIPE_SECRET_KEY=&lt;sk_test_51&gt;
+STRIPE_PUBLIC_KEY=&lt;pk_test_51&gt;
+STRIPE_WEBHOOK_SECRET=&lt;whsec_51&gt;
+</div></section><section class="chapter"><h2 id="kreiranje-tabela-u-bazi-podataka" data-toc="kreiranje-tabela-u-bazi-podataka">Kreiranje Tabela u Bazi Podataka</h2><p id="-6t2132_1292">U ovoj sekciji ćemo opisati tabele koje se kreiraju u bazi podataka:</p><section class="chapter"><h3 id="tabela-users" data-toc="tabela-users">Tabela <code class="code" id="-6t2132_1294">users</code></h3><p id="-6t2132_1295">Sadrži podatke o korisnicima, uključujući njihovo ime, avatar URL, adresu za naplatu i metode plaćanja.</p></section><section class="chapter"><h3 id="tabela-customers" data-toc="tabela-customers">Tabela <code class="code" id="-6t2132_1297">customers</code></h3><p id="-6t2132_1298">Privatna tabela koja sadrži mapiranje korisničkih ID-ova na Stripe ID-ove.</p></section><section class="chapter"><h3 id="tabela-products" data-toc="tabela-products">Tabela <code class="code" id="-6t2132_1300">products</code></h3><p id="-6t2132_1301">Sadrži informacije o proizvodima kreiranim i upravljanim u Stripe-u.</p></section><section class="chapter"><h3 id="tabela-prices" data-toc="tabela-prices">Tabela <code class="code" id="-6t2132_1303">prices</code></h3><p id="-6t2132_1304">Sadrži informacije o cijenama proizvoda, uključujući tip cijene i interval naplate.</p></section><section class="chapter"><h3 id="tabela-subscriptions" data-toc="tabela-subscriptions">Tabela <code class="code" id="-6t2132_1306">subscriptions</code></h3><p id="-6t2132_1307">Sadrži informacije o pretplatama korisnika, uključujući status, ID cijene i vremenske oznake.</p></section></section><section class="chapter"><h2 id="dodavanje-templates-direktorija-u-aplikaciju" data-toc="dodavanje-templates-direktorija-u-aplikaciju">Dodavanje Templates Direktorija u Aplikaciju</h2><p id="-6t2132_1309">Unutar aplikacije <code class="code" id="-6t2132_1310">stripe_pretplata</code> kreiramo novi <code class="code" id="-6t2132_1311">templates</code> direktorij i dodajemo sljedeće HTML datoteke:</p><ul class="list _bullet" id="-6t2132_1312"><li class="list__item" id="-6t2132_1313"><p><code class="code" id="-6t2132_1314">pretplati.html</code></p></li><li class="list__item" id="-6t2132_1315"><p><code class="code" id="-6t2132_1316">uspjeh.html</code></p></li><li class="list__item" id="-6t2132_1317"><p><code class="code" id="-6t2132_1318">otkazi.html</code></p></li></ul><section class="chapter"><h3 id="pretplati-html-boilerplate" data-toc="pretplati-html-boilerplate"><code class="code" id="-6t2132_1320">pretplati.html</code> Boilerplate</h3><div class="code-block" data-lang="markup">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Subscribe to a cool new product&lt;/title&gt;
+    &lt;script src=&quot;https://js.stripe.com/v3/&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;
+        &lt;p&gt;
+            Logged in as {{ request.user.email }}
+        &lt;/p&gt;
+    &lt;/header&gt;
+    &lt;section&gt;
+      &lt;div class=&quot;product&quot;&gt;
+        &lt;div class=&quot;description&quot;&gt;
+          &lt;h3&gt;Starter - Monthly tennis ball delivery 🎾&lt;/h3&gt;
+          &lt;h5&gt;$20.00 / month&lt;/h5&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;form class=&quot;checkout-form&quot; action=&quot;{%  url 'create-checkout-session' %}&quot; method=&quot;POST&quot;&gt;
+          {% csrf_token %}
+        &lt;input type=&quot;hidden&quot; name=&quot;price_lookup_key&quot; value=&quot;standard_monthly&quot; /&gt;
+        &lt;button id=&quot;checkout-and-portal-button&quot; type=&quot;submit&quot;&gt;Checkout&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/section&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+&lt;style&gt;
+    .product {
+        display: flex;
+        justify-content: center;
+        padding: 20px 10px;
+        border: 1px dashed lightgreen;
+    }
+    .checkout-form {
+        display: flex;
+        justify-content: center;
+        padding: 20px 10px;
+    }
+&lt;/style&gt;
+</div></section><section class="chapter"><h3 id="uspjeh-html" data-toc="uspjeh-html"><code class="code" id="-6t2132_1323">uspjeh.html</code></h3><div class="code-block" data-lang="markup">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Thanks for your order!&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+  &lt;script src=&quot;client.js&quot; defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;section&gt;
+    &lt;div class=&quot;product Box-root&quot;&gt;
+      &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; width=&quot;14px&quot; height=&quot;16px&quot; viewBox=&quot;0 0 14 16&quot; version=&quot;1.1&quot;&gt;
+          &lt;defs/&gt;
+          &lt;g id=&quot;Flow&quot; stroke=&quot;none&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;&gt;
+              &lt;g id=&quot;0-Default&quot; transform=&quot;translate(-121.000000, -40.000000)&quot; fill=&quot;#E184DF&quot;&gt;
+                  &lt;path d=&quot;M127,50 L126,50 C123.238576,50 121,47.7614237 121,45 C121,42.2385763 123.238576,40 126,40 L135,40 L135,56 L133,56 L133,42 L129,42 L129,56 L127,56 L127,50 Z M127,48 L127,42 L126,42 C124.343146,42 123,43.3431458 123,45 C123,46.6568542 124.343146,48 126,48 L127,48 Z&quot; id=&quot;Pilcrow&quot;/&gt;
+              &lt;/g&gt;
+          &lt;/g&gt;
+      &lt;/svg&gt;
+      &lt;div class=&quot;description Box-root&quot;&gt;
+        &lt;h3&gt;Subscription to Starter plan successful!&lt;/h3&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+      &lt;div&gt; User = {{request.user}} &lt;/div&gt;
+    &lt;form action=&quot;{%  url  'direct-to-customer-portal' %}&quot; method=&quot;POST&quot;&gt;
+        {% csrf_token %}
+      &lt;input type=&quot;hidden&quot; id=&quot;session-id&quot; name=&quot;session_id&quot; value=&quot;&quot; /&gt;
+      &lt;button id=&quot;checkout-and-portal-button&quot; type=&quot;submit&quot;&gt;Manage your billing information&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</div></section><section class="chapter"><h3 id="otkazi-html" data-toc="otkazi-html"><code class="code" id="-6t2132_1326">otkazi.html</code></h3><div class="code-block" data-lang="markup">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Checkout canceled&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;section&gt;
+    &lt;p&gt;Picked the wrong subscription? Shop around then come back to pay!&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</div></section></section><section class="chapter"><h2 id="dodavanje-koda-u-views-py" data-toc="dodavanje-koda-u-views-py">Dodavanje Koda u <code class="code" id="-6t2132_1329">views.py</code></h2><p id="-6t2132_1330">U <code class="code" id="-6t2132_1331">views.py</code> dodajemo funkcije za upravljanje pretplatama, uključujući kreiranje sesija za naplatu, upravljanje korisničkim portalom i obradu webhook događaja. Ovdje su najvažniji dijelovi koda:</p><ul class="list _bullet" id="-6t2132_1332"><li class="list__item" id="-6t2132_1333"><p><code class="code" id="-6t2132_1334">subscribe</code>: Funkcija koja prikazuje stranicu za pretplatu.</p></li><li class="list__item" id="-6t2132_1335"><p><code class="code" id="-6t2132_1336">cancel</code>: Funkcija koja prikazuje stranicu za otkazivanje.</p></li><li class="list__item" id="-6t2132_1337"><p><code class="code" id="-6t2132_1338">success</code>: Funkcija koja prikazuje stranicu za uspje&scaron;</p></li></ul><p id="-6t2132_1339">nu pretplatu.</p><ul class="list _bullet" id="-6t2132_1340"><li class="list__item" id="-6t2132_1341"><p><code class="code" id="-6t2132_1342">create_checkout_session</code>: Funkcija koja kreira novu sesiju za naplatu koristeći Stripe API.</p></li><li class="list__item" id="-6t2132_1343"><p><code class="code" id="-6t2132_1344">direct_to_customer_portal</code>: Funkcija koja preusmjerava korisnika na Stripe korisnički portal.</p></li></ul><section class="chapter"><h3 id="views-py-primjer-koda" data-toc="views-py-primjer-koda"><code class="code" id="-6t2132_1346">views.py</code> - Primjer Koda</h3><div class="code-block" data-lang="python">
+import stripe
+from django.conf import settings
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+def subscribe(request):
+    return render(request, 'stripe_pretplata/pretplati.html')
+
+def cancel(request):
+    return render(request, 'stripe_pretplata/otkazi.html')
+
+def success(request):
+    return render(request, 'stripe_pretplata/uspjeh.html')
+
+@csrf_exempt
+def create_checkout_session(request):
+    if request.method == 'POST':
+        domain_url = 'http://localhost:8000/'
+        price_lookup_key = request.POST['price_lookup_key']
+        try:
+            checkout_session = stripe.checkout.Session.create(
+                payment_method_types=['card'],
+                line_items=[
+                    {
+                        'price_data': {
+                            'currency': 'usd',
+                            'product_data': {
+                                'name': 'Starter Subscription',
+                            },
+                            'unit_amount': 2000,
+                            'recurring': {
+                                'interval': 'month',
+                            },
+                        },
+                        'quantity': 1,
+                    },
+                ],
+                mode='subscription',
+                success_url=domain_url + 'stripe_pretplata/uspjeh.html',
+                cancel_url=domain_url + 'stripe_pretplata/otkazi.html',
+            )
+            return JsonResponse({
+                'id': checkout_session.id
+            })
+        except Exception as e:
+            return JsonResponse({
+                'error': str(e)
+            })
+</div></section></section><section class="chapter"><h2 id="kreiranje-url-mappings-u-urls-py" data-toc="kreiranje-url-mappings-u-urls-py">Kreiranje URL Mappings u <code class="code" id="-6t2132_1349">urls.py</code></h2><p id="-6t2132_1350">U <code class="code" id="-6t2132_1351">urls.py</code> datoteci dodajemo URL mappings za nove funkcije:</p><div class="code-block" data-lang="python">
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('pretplati/', views.subscribe, name='pretplati'),
+    path('otkazi/', views.cancel, name='otkazi'),
+    path('uspjeh/', views.success, name='uspjeh'),
+    path('create-checkout-session/', views.create_checkout_session, name='create-checkout-session'),
+    path('direct-to-customer-portal/', views.direct_to_customer_portal, name='direct-to-customer-portal'),
+]
+</div></section><div class="last-modified">Last modified: 29 May 2024</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="migracija-baze-podataka-i-prototip-chat-sesija.html" class="navigation-links__prev">10.2 Migracija Baze Podataka i Prototip Chat Sesija</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b259/app.js"></script></body></html>
