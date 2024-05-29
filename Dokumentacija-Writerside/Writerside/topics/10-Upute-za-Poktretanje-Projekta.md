@@ -7,6 +7,13 @@ Napravljeno je u virtualnom okruženju radi:
 - `konfiguracijom projekta`
 - `kolaboracije`
 
+> Preduslovi:
+> - [Python 3.12+](https://www.python.org/downloads/)
+> - [Pip](https://pip.pypa.io/en/stable/installation/)
+> - [Git](https://git-scm.com/downloads)
+> - [virtualenv 20.26.2](https://pypi.org/project/virtualenv/)
+> - Visual Studio Code, PyCharm, ili drugi IDE (Može se koristiti Notepad i Terminal :D)
+
 ## Supabase Access Control poziv
 
 Poslani su email-ovi:
@@ -64,15 +71,17 @@ git clone https://github.com/SafetImamovic/ForgeAI
     ├── .env
     ├── .gitignore
     ├── README.md
+    ├── instaliraj_pakete.ps1
+    ├── instaliraj_pakete.sh
 ```
 
 > **Napomena:** `.env` datoteka se ne pušta na git jer sadrži autentifikacijske ključeve i konfiguraciju baze na Supabase.
 
-### 2. Kreiranje `.env` Datoteke
+### 2. Postavljanje  `.env` Datoteke
 
 Link: [.env](https://drive.google.com/file/d/18213miLU0g_k_knuvFAcTTuy542GQH1y/view?usp=drive_link)
 
-Kreirajte `.env` datoteku u root direktoriju projekta i popunite je sljedećim sadržajem:
+Potrebno je staviti `.env` datoteku u root direktoriju projekta i koji sadrži je sljedeći sadržaj:
 
 ```
 SUPABASE_URL=https://<Supabase_url>.supabase.co
@@ -87,6 +96,13 @@ STRIPE_SECRET_KEY=<Stripe_secret_key>
 STRIPE_PUBLIC_KEY=<Stripe_public_key>
 STRIPE_WEBHOOK_SECRET=<Stripe_webhook_secret>
 ```
+
+> **Napomena:** Nakon skidanja `.env` fajla, trebalo bi provjeriti da li se zove tacno `.env` jer
+> nekada nakon skidanja sa Google Drive-a, ime fajla moze biti `.env.txt` ili `env`.
+
+> **Napomena:** Vec se nalaze prave vrijednosti u `.env` datoteci na Google Drive-u.
+> > Takodjer, Ove vrijednosti se mogu dobiti iz postavki Supabase projekta i Stripe dashboard-a.
+
 
 ### 3. Aktivacija Python Virtualnog Okruženja
 
@@ -159,6 +175,13 @@ urllib3             2.2.1
 websockets          12.0
 ```
 
+> Ako Virtual Environment nije prepoznat, ili ima problem sa interpreterom, ima vise verzije interpretera,
+> moguce je instalirati sve pakete lokalno pomocu PowerShell skripte: `instaliraj_pakete.ps1`
+> i Shell skripte: `instaliraj_pakete.sh`.
+> ```shell
+> ./instaliraj_pakete
+> ```
+
 ### 5. Pokretanje Django Servera
 
 #### Prelazak u Direktorij s `manage.py`
@@ -173,17 +196,25 @@ cd ForgeAI_django
 python manage.py runserver
 ```
 
-Server će biti pokrenut na:
-
-```
-http://127.0.0.1:8000/
-```
+> Početna stranica se nalazi na:
+>
+> ```
+> http://127.0.0.1:8000/home
+> ```
+>
+> > **Napomena:** Početni path:
+> > ```
+> > http://127.0.0.1:8000/
+> > ```
+> > Ne sadrži nikakav sadržaj pa će dati error.
 
 > **Napomena:** Ako se pojavi poruka:
 > ```
 > ?: (urls.W005) URL namespace 'admin' isn't unique. You may not be able to reverse all URLs in this namespace
 > ```
 > to znači da je dodan još jedan admin path, originalni Django middleware session admin path nije uključen.
+
+<shortcut>CTRL</shortcut>+<shortcut>C</shortcut> zauzavlja server.
 
 ### 6. Aktivacija Stripe Webhook Listener-a
 
@@ -206,6 +237,10 @@ U PowerShell-u s administrativnim pravima:
 ```shell
 $env:Path += ";C:\Stripe\stripe.exe"
 ```
+ili
+```shell
+$env:Path += ";C:\Stripe\stripe"
+```
 
 Provjerite da li je Stripe CLI dodan:
 
@@ -218,6 +253,16 @@ Provjerite verziju Stripe-a:
 ```shell
 stripe --version
 ```
+
+> Ako se ne prikaže verzija, provjerite da li je putanja tačna.
+
+> Ako je putanja tacna, moguce je da ce se morati preko `Edit the system enviroment variables` dodati putanja.
+
+> Ako se prikaže verzija, to znači da je Stripe CLI uspješno instaliran.
+> Ako ne, mogu se komande direktno pokretati iz terminala pokretanjem `stripe.exe`
+> ```Shell
+> ./stripe.exe --version // ostale komande
+> ```
 
 #### Autentifikacija Stripe CLI
 
@@ -249,11 +294,6 @@ Kada su Django server i Stripe webhook pokrenuti, početna stranica se nalazi na
 http://127.0.0.1:8000/home
 ```
 
-> **Napomena:** Početni path: 
-> ```
->http://127.0.0.1:8000/
->```
-> Ne sadrži nikakav sadržaj pa će dati error.
-
+<shortcut>CTRL</shortcut>+<shortcut>C</shortcut> zaustavlja Stripe Webhook Listener.
 
 To su upute za kloniranje i postavljanje projekta.
