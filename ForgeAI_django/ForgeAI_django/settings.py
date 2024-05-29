@@ -63,13 +63,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'backend_logika',
     'prompting_handler',
-    'crispy_forms',
-    'crispy_bootstrap5'
+    'stripe_pretplata'
 ]
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+# CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
-CRISPY_TEMPLATE_PACK = "bootstrap5"
+# CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -158,4 +157,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'backend_logika.MyUser';
+#AUTH_USER_MODEL = 'backend_logika.MyUser';
