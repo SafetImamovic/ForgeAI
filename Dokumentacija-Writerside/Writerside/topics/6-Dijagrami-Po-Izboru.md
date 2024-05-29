@@ -1,3 +1,3 @@
-# 7. **Dijagrami Po Izboru**
+# 7.7. Sekvencijalni Dijagrami
 
-Ono naa
+![](../../images/Dijagrami/ForgeAI sekvencijalni dijagram.png)

@@ -1,4 +1,4 @@
-# Analiza tržišta
+# 3. Analiza tržišta
 
 Analiza tržišta za ForgeAI odnosi se na svjetske i regionalne lidere u proizvodnji AI softvera koji generiše MIDI datoteke. U nastavku ćemo istaknuti najznačajnije konkurente.
 

@@ -1,4 +1,4 @@
-# Uvod
+# 1. Uvod
 
 U današnjem visoko konkurentnom tržištu, uspješno plasiranje proizvoda ili usluga zahtijeva iznimnu organizaciju, efikasnost i sposobnost upravljanja velikim količinama informacija. ForgeAI je inovativan VST plugin dizajniran da generira MIDI datoteke na osnovu korisničkog unosa tekstualnih podataka. Kroz ovaj projekt, ForgeAI nudi jedinstvenu priliku za muzičke profesionalce i entuzijaste da koriste naprednu tehnologiju za stvaranje muzike na intuitivan i efikasan način.
 
@@ -44,9 +44,10 @@ Sistemska arhitektura ForgeAI-a sastoji se od nekoliko ključnih komponenti:
 ## Tehnologije i Alati
 
 - **Frontend:** HTML, CSS, JavaScript za izgradnju korisničkog interfejsa.
-- **Backend:** Node.js, Express za server-side logiku i API komunikaciju.
+- **Backend:** Django za server-side logiku i middleware sesije.
 - **API Integracija:** OpenAI API za generiranje muzike na osnovu tekstualnih unosa.
-- **Baza Podataka:** MongoDB za pohranu korisničkih podataka i pretplata.
+- **Baza Podataka:** Supabase za pohranu korisničkih podataka i autentifikaciju.
+- **Plaćanje:** Stripe za upravljanje plaćanjima i pretplatama.
 - **Algoritmi:** Custom algoritmi za konverziju JSON podataka u MIDI format.
 
 # Zaključak

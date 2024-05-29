@@ -1,4 +1,4 @@
-# Specifikacija funkcionalnih i nefunkcionalnih zahtjeva
+# 4. Specifikacija funkcionalnih i nefunkcionalnih zahtjeva
 
 ## Korisnik | AI MIDI Generator
 

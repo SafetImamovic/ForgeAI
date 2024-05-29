@@ -1,4 +1,4 @@
-# Migracija Baze Podataka i Prototip Chat Sesija
+# 10.2 Migracija Baze Podataka i Prototip Chat Sesija
 
 ## Migracija baze podataka
 

@@ -1,4 +1,4 @@
-# Pravno-Zakonska Regulativa
+# 6. Pravno-Zakonska Regulativa
 
 ## Uvod
 
