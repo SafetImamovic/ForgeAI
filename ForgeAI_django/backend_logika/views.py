@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from ForgeAI_django import settings
 from supabase import create_client, Client
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 supabase: Client = settings.supabase
 
@@ -20,37 +21,54 @@ def home(request):
 
 def login(request):
     user = request.session.get('user')
+
     if user:
         return redirect('home')
         
     if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        
+        if not email or not password:
+            messages.error(request, 'Please enter both email and password')
+            return render(request, 'login.html')
+        
         response = supabase.auth.sign_in_with_password({'email': email, 'password': password})
-        if response.user:
+        
+        if response and response.user:
             request.session['user'] = {
                 'email': response.user.email,
                 'id': response.user.id
             }
-            return redirect('home')
+            
+            ime_response = supabase.table('user_detalji').select("ime").eq("user_id", response.user.id).execute()
+            
+            ime = ime_response.data[0]['ime'] if ime_response.data else 'No name found'
+            
+            return render(request, 'home.html', {
+                'ime': ime
+            })
         else:
             messages.error(request, 'Invalid credentials')
         
     return render(request, 'login.html')
+
 
 def signup(request):
     user = request.session.get('user')
     if user:
         return redirect('home')
     
-    if request.method == 'POST':
+    if request.method == 'POST':    
         name = request.POST['name']
         email = request.POST['email']
         password = request.POST['password']
         response = supabase.auth.sign_up({'email': email, 'password': password})
+
         if response.user:
             # Update the user's metadata with the name
             supabase.table('user_detalji').insert({"user_id": response.user.id, "ime": name, "prezime": "Prezime"}).execute()
+            
             return redirect('login')
         else:
             messages.error(request, 'Sign up failed')
@@ -61,4 +79,7 @@ def logout(request):
     if 'user' in request.session:
         del request.session['user']
         supabase.auth.sign_out()
+        
+    user = request.session.get('user')
+
     return redirect('home')

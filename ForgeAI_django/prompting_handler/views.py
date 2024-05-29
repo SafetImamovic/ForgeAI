@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from .forms import ChatForm
 from django.contrib import messages
 from .data_klase import ChatSesija, Poruka
+from stripe_pretplata import models
 
 supabase: Client = settings.supabase
 
@@ -14,6 +15,18 @@ def index(request):
         messages.error(request, 'You need to be logged in to access chat sessions.')
         return redirect('login')
     
+    response_s = supabase.table('stripe_pretplata_checkoutsesijazapis').select('*').eq('user_uuid', user['id']).execute();
+    
+    if (len(response_s.data) == 0):
+        return redirect('pretplati')
+    
+    checkout_record = models.CheckoutSesijaZapis.objects.get(
+        user_uuid=user['id']
+    )
+    
+    if (checkout_record.ima_pristup == False):
+        return redirect('pretplati')
+        
     response = supabase.table('chat_sesije').select('*').eq('user_id', user['id']).execute()
     chat_sessions_data = response.data
     
@@ -33,6 +46,18 @@ def chat_session(request, session_id):
     if not user:
         messages.error(request, 'You need to be logged in to access this chat session.')
         return redirect('login')
+    
+    response_s = supabase.table('stripe_pretplata_checkoutsesijazapis').select('*').eq('user_uuid', user['id']).execute();
+    
+    if (len(response_s.data) == 0):
+        return redirect('pretplati')
+    
+    checkout_record = models.CheckoutSesijaZapis.objects.get(
+        user_uuid=user['id']
+    )
+    
+    if (checkout_record.ima_pristup == False):
+        return redirect('pretplati')
     
     session_response = supabase.table('chat_sesije').select('*').eq('id', session_id).eq('user_id', user['id']).execute()
     
@@ -78,6 +103,18 @@ def create_session(request):
     if not user:
         messages.error(request, 'You need to be logged in to create a chat session.')
         return redirect('login')
+    
+    response_s = supabase.table('stripe_pretplata_checkoutsesijazapis').select('*').eq('user_uuid', user['id']).execute();
+    
+    if (len(response_s.data) == 0):
+        return redirect('pretplati')
+    
+    checkout_record = models.CheckoutSesijaZapis.objects.get(
+        user_uuid=user['id']
+    )
+    
+    if (checkout_record.ima_pristup == False):
+        return redirect('pretplati')
     
     if request.method == "POST":
         session_name = request.POST['session_name']
