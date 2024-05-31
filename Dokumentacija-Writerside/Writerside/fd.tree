@@ -30,4 +30,9 @@
         </toc-element>
         <toc-element topic="Implementacija-Stripe-a.md"/>
     </toc-element>
+    <toc-element topic="11-Implementacija-Koda-v2.md">
+        <toc-element topic="intro.md"/>
+        <toc-element topic="Instalacija-i-Konfiguracija-Django-Allauth.md"/>
+        <toc-element topic="Dodavanje-Google-i-GitHub-Autentifikacije.md"/>
+    </toc-element>
 </instance-profile>

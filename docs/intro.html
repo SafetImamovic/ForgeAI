@@ -1,0 +1,73 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2024-05-31T15:30:15.6685448"><title>11.1 Ponovna Postavka Projekta | ForgeAI Dokumentacija</title><script type="application/json" id="virtual-toc-data">[{"id":"uvod","level":0,"title":"Uvod","anchor":"#uvod"},{"id":"kreiranje-projekta","level":0,"title":"Kreiranje Projekta","anchor":"#kreiranje-projekta"},{"id":"postavljanje-django-projekta","level":0,"title":"Postavljanje Django Projekta","anchor":"#postavljanje-django-projekta"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b259/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="11.1 Ponovna Postavka Projekta | ForgeAI Dokumentacija"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="ForgeAI Dokumentacija Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/intro.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="11.1 Ponovna Postavka Projekta | ForgeAI Dokumentacija"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/intro.html#webpage",
+    "url": "writerside-documentation/intro.html",
+    "name": "11.1 Ponovna Postavka Projekta | ForgeAI Dokumentacija",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "ForgeAI Dokumentacija Help"
+}</script><!-- End Schema.org --></head><body data-id="intro" data-main-title="11.1 Ponovna Postavka Projekta" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="11-Implementacija-Koda-v2.md|11. Implementacija Koda v2"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>ForgeAI Dokumentacija  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="intro" id="intro.md">11.1 Ponovna Postavka Projekta</h1><section class="chapter"><h2 id="uvod" data-toc="uvod">Uvod</h2><p id="arpioc_1308">Ovo je ponovna implementacija projekta koji se ranije oslanjao na Supabase za autentifikaciju i bazu podataka. Sada smo odlučili ukloniti tu zavisnost i koristiti Django za backend, frontend i bazu podataka (uključujući autentifikaciju).</p><section class="chapter"><h3 id="razlozi-za-prelazak-s-supabase-na-django" data-toc="razlozi-za-prelazak-s-supabase-na-django">Razlozi za prelazak s Supabase na Django</h3><ol class="list _decimal" id="arpioc_1309" type="1"><li class="list__item" id="arpioc_1310"><p><span class="control" id="arpioc_1311">Ograničenja Supabase-a</span>: Besplatni sloj Supabase-a ograničava slanje email potvrda na 3 emaila po satu. Kori&scaron;tenjem Google Cloud SMTP-a, taj broj može biti veći.</p></li><li class="list__item" id="arpioc_1312"><p><span class="control" id="arpioc_1313">Nezavisnost od Provajdera</span>: Supabase koristi AWS servere, dok ćemo mi koristiti Google Cloud direktno. Ovo nam omogućava da ne zavisimo od provajdera koji koristi cloud servis, već da direktno koristimo cloud servis bez posrednika.</p></li></ol></section></section><section class="chapter"><h2 id="kreiranje-projekta" data-toc="kreiranje-projekta">Kreiranje Projekta</h2><section class="chapter"><h3 id="kreiranje-root-direktora-i-virtualnog-okru-enja" data-toc="kreiranje-root-direktora-i-virtualnog-okru-enja">Kreiranje Root Direktora i Virtualnog Okruženja</h3><p id="arpioc_1314">Prvo smo kreirali novi direktorij u rootu:</p><div class="code-block" data-lang="bash">
+mkdir ForgeAI
+</div><p id="arpioc_1316">Prije kreiranja novog projekta, pokrenuli smo virtualno okruženje u Pythonu:</p><aside class="prompt" data-type="tip" data-title="" id="arpioc_1317"><p id="arpioc_1318">Ako Python virtualno okruženje nije instalirano:</p><div class="code-block" data-lang="bash">
+pip install virtualenv
+</div></aside><aside class="prompt" data-type="tip" data-title="" id="arpioc_1320"><p id="arpioc_1321">Ovo kreira virtualno okruženje nazvano <code class="code" id="arpioc_1322">venv</code> u rootu projekta:</p><div class="code-block" data-lang="bash">
+python -m venv venv
+</div></aside><p id="arpioc_1324">Struktura direktorija nakon kreiranja izgleda ovako:</p><div class="code-block" data-lang="none">
+/ForgeAI                  # Root repozitorija
+  ├── /docs
+  ├── /Dokumentacija-Writerside
+  ├── /ForgeAI_django
+  ├── /ForgeAI_env
+  ├── /MIDI_python_parser
+  ├── llama3_test.py
+  ├── .env
+  ├── .gitignore
+  ├── README.md
+  ├── instaliraj_pakete.ps1
+  ├── instaliraj_pakete.sh
+  ├── /ForgeAI           &lt; + Novi direktorij
+  ├── /venv              &lt; + Novi direktorij
+  │  ├── pyvenv.cfg
+  │  ├── /Lib
+  │  ├── /Scripts
+  │  │  ├── activate.ps1 &lt; Skripta koja aktivira virtualno okruženje
+  │  ├── /Include
+</div><p id="arpioc_1326">Aktivacija virtualnog okruženja iz root direktorija:</p><div class="code-block" data-lang="bash">
+venv\Scripts\activate
+</div><p id="arpioc_1328">Izlaz:</p><div class="code-block" data-lang="bash">
+(venv) PS root
+</div><p id="arpioc_1330">Provjera instaliranih paketa:</p><div class="code-block" data-lang="bash">
+pip list
+</div><p id="arpioc_1332">Izlaz:</p><div class="code-block" data-lang="bash">
+Package    Version
+---------- -------
+pip        24.0
+</div><p id="arpioc_1334">Deaktivacija virtualnog okruženja:</p><div class="code-block" data-lang="bash">
+deactivate
+</div><p id="arpioc_1336">Izlaz:</p><div class="code-block" data-lang="bash">
+(venv) PS root
+</div><p id="arpioc_1338">u:</p><div class="code-block" data-lang="bash">
+PS root
+</div><aside class="prompt" data-type="tip" data-title="" id="arpioc_1340"><p id="arpioc_1341"><span class="control" id="arpioc_1342">Upozorenje</span>: Uvijek je potrebno pokrenuti virtualno okruženje prije rada na projektu.</p></aside></section></section><section class="chapter"><h2 id="postavljanje-django-projekta" data-toc="postavljanje-django-projekta">Postavljanje Django Projekta</h2><section class="chapter"><h3 id="kreiranje-django-projekta" data-toc="kreiranje-django-projekta">Kreiranje Django Projekta</h3><p id="arpioc_1343">Iz root direktorija:</p><div class="code-block" data-lang="bash">
+cd ForgeAI
+</div><p id="arpioc_1345">Pokretanje naredbe za kreiranje Django projekta:</p><div class="code-block" data-lang="bash">
+django-admin startproject ForgeAI .
+</div><p id="arpioc_1347">Ova naredba kreira osnovnu strukturu Django projekta unutar trenutnog direktorija.</p><p id="arpioc_1348">Struktura nakon pokretanja komande:</p><div class="code-block" data-lang="none">
+/ForgeAI                  # Root repozitorija
+  ├── /ForgeAI
+  │  ├── /ForgeAI         &lt; + Nova Direktorija
+  │  │  ├── __pycache__
+  │  │  ├── __init__.py
+  │  │  ├── asgi.py
+  │  │  ├── wsgi.py
+  │  │  ├── urls.py
+  │  │  ├── settings.py
+  │  ├── manage.py
+</div></section></section><div class="last-modified">Last modified: 31 May 2024</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="11-implementacija-koda-v2.html" class="navigation-links__prev">11. Implementacija Koda v2</a><a href="instalacija-i-konfiguracija-django-allauth.html" class="navigation-links__next">11.2 Instalacija i Konfiguracija Django Allauth</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b259/app.js"></script></body></html>

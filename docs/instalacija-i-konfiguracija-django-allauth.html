@@ -1,0 +1,127 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2024-05-31T15:30:15.690673"><title>11.2 Instalacija i Konfiguracija Django Allauth | ForgeAI Dokumentacija</title><script type="application/json" id="virtual-toc-data">[{"id":"dodavanje-url-ova-za-allauth","level":0,"title":"Dodavanje URL-ova za Allauth","anchor":"#dodavanje-url-ova-za-allauth"},{"id":"kreiranje-superusera","level":0,"title":"Kreiranje Superusera","anchor":"#kreiranje-superusera"},{"id":"pokretanje-servera","level":0,"title":"Pokretanje Servera","anchor":"#pokretanje-servera"},{"id":"kreiranje-aplikacije-za-dashboard","level":0,"title":"Kreiranje Aplikacije za Dashboard","anchor":"#kreiranje-aplikacije-za-dashboard"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b259/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="11.2 Instalacija i Konfiguracija Django Allauth | ForgeAI Dokumentacija"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="ForgeAI Dokumentacija Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/instalacija-i-konfiguracija-django-allauth.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="11.2 Instalacija i Konfiguracija Django Allauth | ForgeAI Dokumentacija"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/instalacija-i-konfiguracija-django-allauth.html#webpage",
+    "url": "writerside-documentation/instalacija-i-konfiguracija-django-allauth.html",
+    "name": "11.2 Instalacija i Konfiguracija Django Allauth | ForgeAI Dokumentacija",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "ForgeAI Dokumentacija Help"
+}</script><!-- End Schema.org --></head><body data-id="Instalacija-i-Konfiguracija-Django-Allauth" data-main-title="11.2 Instalacija i Konfiguracija Django Allauth" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="11-Implementacija-Koda-v2.md|11. Implementacija Koda v2"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>ForgeAI Dokumentacija  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="Instalacija-i-Konfiguracija-Django-Allauth" id="Instalacija-i-Konfiguracija-Django-Allauth.md">11.2 Instalacija i Konfiguracija Django Allauth</h1><p id="-k3ko0o_637">Sljedeća komanda instalira Django Allauth paket:</p><div class="code-block" data-lang="bash">
+pip install django-allauth
+</div><p id="-k3ko0o_639">Potrebne izmjene u <code class="code" id="-k3ko0o_640">settings.py</code> kako bi Allauth radio:</p><p id="-k3ko0o_641"><span class="control" id="-k3ko0o_642">Dodavanje autentifikacijskih backend-ova:</span></p><div class="code-block" data-lang="python">
+AUTHENTICATION_BACKENDS = [
+  'django.contrib.auth.backends.ModelBackend',
+  'allauth.account.auth_backends.AuthenticationBackend'
+]
+</div><p id="-k3ko0o_644"><span class="control" id="-k3ko0o_645">Dodavanje aplikacija u <code class="code" id="-k3ko0o_646">INSTALLED_APPS</code>:</span></p><div class="code-block" data-lang="python">
+INSTALLED_APPS = [
+  'allauth',
+  'allauth.account',
+  'allauth.socialaccount',
+  ...
+]
+</div><p id="-k3ko0o_648"><span class="control" id="-k3ko0o_649">Dodavanje middleware-a:</span></p><div class="code-block" data-lang="python">
+MIDDLEWARE = [
+  ...
+  'allauth.account.middleware.AccountMiddleware'
+]
+</div><p id="-k3ko0o_651"><span class="control" id="-k3ko0o_652">Dodatne postavke za Allauth:</span></p><div class="code-block" data-lang="python">
+SOCIALACCOUNT_PROVIDERS = {}
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+ACCOUNT_EMAIL_REQUIRED = True
+</div><section class="chapter"><h2 id="dodavanje-url-ova-za-allauth" data-toc="dodavanje-url-ova-za-allauth">Dodavanje URL-ova za Allauth</h2><p id="-k3ko0o_654">Izmjene u <code class="code" id="-k3ko0o_655">urls.py</code>:</p><div class="code-block" data-lang="python">
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+  path('admin/', admin.site.urls),
+  path('accounts/', include('allauth.urls')),
+]
+</div><p id="-k3ko0o_657">Ova naredba uključuje URL-ove za Allauth autentifikaciju.</p><section class="chapter"><h3 id="primjena-migracija" data-toc="primjena-migracija">Primjena Migracija</h3><p id="-k3ko0o_658">Pokretanje migracija:</p><div class="code-block" data-lang="bash">
+python manage.py migrate
+</div><p id="-k3ko0o_660">Ova komanda primjenjuje sve migracije i kreira bazu podataka.</p><p id="-k3ko0o_661">Struktura nakon migracije:</p><div class="code-block" data-lang="none">
+/ForgeAI                  # Root repozitorija
+  ├── /ForgeAI
+  │  ├── manage.py
+  │  ├── db.sqlite3       &lt; + Nova baza podataka ⛁
+</div></section></section><section class="chapter"><h2 id="kreiranje-superusera" data-toc="kreiranje-superusera">Kreiranje Superusera</h2><p id="-k3ko0o_663">Pokretanje komande za kreiranje superusera:</p><div class="code-block" data-lang="bash">
+python manage.py createsuperuser
+
+&gt; Username: admin
+&gt; Email address: safet.imamovic.22@size.ba
+&gt; Password: 
+&gt; Password (again): 
+Superuser created successfully.
+</div></section><section class="chapter"><h2 id="pokretanje-servera" data-toc="pokretanje-servera">Pokretanje Servera</h2><p id="-k3ko0o_665">Pokretanje razvojnog servera:</p><div class="code-block" data-lang="bash">
+python manage.py runserver
+</div><p id="-k3ko0o_667">Izlaz:</p><div class="code-block" data-lang="bash">
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+May 31, 2024 - 13:43:57
+Django version 5.0.6, using settings 'ForgeAI.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+</div><aside class="prompt" data-type="tip" data-title="" id="-k3ko0o_669"><p id="-k3ko0o_670"><span class="control" id="-k3ko0o_671">Upozorenje</span>: Po&scaron;to nema <code class="code" id="-k3ko0o_672">index.html</code> stranice, dobit će se 404 error &quot;Not Found&quot;. Međutim, na <code class="code" id="-k3ko0o_673">http://127.0.0.1:8000/admin</code> postoji admin login stranica.</p></aside><section class="chapter"><h3 id="primjer-registracije-novog-accounta" data-toc="primjer-registracije-novog-accounta">Primjer Registracije Novog Accounta</h3><p id="-k3ko0o_674">Registracija novog korisnika na <code class="code" id="-k3ko0o_675">http://127.0.0.1:8000/accounts/signup/</code>:</p><p id="-k3ko0o_676">Primjer testnog accounta:</p><ul class="list _bullet" id="-k3ko0o_677"><li class="list__item" id="-k3ko0o_678"><p><span class="control" id="-k3ko0o_679">Email</span>: test@test.com</p></li><li class="list__item" id="-k3ko0o_680"><p><span class="control" id="-k3ko0o_681">Username</span>: test</p></li><li class="list__item" id="-k3ko0o_682"><p><span class="control" id="-k3ko0o_683">Password</span>: test1234@@</p></li></ul><p id="-k3ko0o_684">Prikaz email potvrde u konzoli:</p><div class="code-block" data-lang="none">
+Content-Type: text/plain; charset=&quot;utf-8&quot;
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: [127.0.0.1:8000] Please Confirm Your Email Address
+From: webmaster@localhost
+To: test@test.com
+Date: Fri, 31 May 2024 11:50:45 -0000
+Message-ID: &lt;171715624535.14724.8192548555147862071@DESKTOP-24UA1HK.local&gt;
+
+Hello from 127.0.0.1:8000!
+
+You're receiving this email because user test has given your email address to register an account on 127.0.0.1:8000.
+
+To confirm this is correct, go to http://127.0.0.1:8000/accounts/confirm-email/Mg:1sD0mT:xoP-4Ts5ikiXEIAAK6KANr77ERX-m8gMfJLfR_fwzuU/
+
+Thank you for using 127.0.0.1:8000!
+127.0.0.1:8000
+</div></section></section><section class="chapter"><h2 id="kreiranje-aplikacije-za-dashboard" data-toc="kreiranje-aplikacije-za-dashboard">Kreiranje Aplikacije za Dashboard</h2><p id="-k3ko0o_686">Napravljena je nova aplikacija:</p><div class="code-block" data-lang="bash">
+python manage.py startapp dashboard
+</div><p id="-k3ko0o_688">Nakon kreiranja dodana je direktorija <code class="code" id="-k3ko0o_689">templates</code> i u njoj <code class="code" id="-k3ko0o_690">profile.html</code>:</p><div class="code-block" data-lang="none">
+/ForgeAI                  # Root repozitorija
+  ├── /ForgeAI
+  │  ├── /ForgeAI
+  │  ├── /dashboard       &lt; + Nova Direktorija
+  │  │  ├── /templates    &lt; + Nova Direktorija
+  │  │  │  ├── profile.html &lt; + Novi file
+  │  ├── manage.py
+  │  ├── db.sqlite3 ⛁
+</div><p id="-k3ko0o_692">Dodavanje aplikacije u <code class="code" id="-k3ko0o_693">settings.py</code>:</p><div class="code-block" data-lang="python">
+INSTALLED_APPS = [
+
+
+  'dashboard',
+  ...
+]
+</div><p id="-k3ko0o_695">Dodavanje pogleda u <code class="code" id="-k3ko0o_696">views.py</code>:</p><div class="code-block" data-lang="python">
+from django.shortcuts import render
+
+def profile(request):
+  return render(request, 'profile.html')
+</div><p id="-k3ko0o_698">Sadržaj <code class="code" id="-k3ko0o_699">profile.html</code>:</p><div class="code-block" data-lang="markup">
+&lt;h1&gt;Logged in kao: {{ request.user.username }}&lt;/h1&gt;
+
+&lt;a href=&quot;{% url 'account_logout' %}&quot;&gt;Logout&lt;/a&gt;
+</div><p id="-k3ko0o_701">Dodavanje rute u <code class="code" id="-k3ko0o_702">urls.py</code>:</p><div class="code-block" data-lang="python">
+urlpatterns = [
+  ...
+  path('accounts/profile/', views.profile, name='profile')
+]
+</div></section><div class="last-modified">Last modified: 31 May 2024</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="intro.html" class="navigation-links__prev">11.1 Ponovna Postavka Projekta</a><a href="dodavanje-google-i-github-autentifikacije.html" class="navigation-links__next">11.3 Dodavanje Google i GitHub Autentifikacije</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b259/app.js"></script></body></html>
