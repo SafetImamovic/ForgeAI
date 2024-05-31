@@ -15,19 +15,19 @@ INSTALLED_APPS = [
 ]
 ```
 
-![](../../images/Auth/1.png)
+![](../../images/Auth/auth_1.png)
 
-![](../../images/Auth/2.png)
+![](../../images/Auth/auth_2.png)
 
-![](../../images/Auth/3.png)
+![](../../images/Auth/auth_3.png)
 
 Kroz admin dashboard se može uspostaviti autentifikacija putem Google i GitHub providera.
 
-![](../../images/Auth/4.png)
+![](../../images/Auth/auth_4.png)
 
-![](../../images/Auth/5.png)
+![](../../images/Auth/auth_5.png)
 
-![](../../images/Auth/6.png)
+![](../../images/Auth/auth_6.png)
 
 ## Dokumentacija za Allauth
 
