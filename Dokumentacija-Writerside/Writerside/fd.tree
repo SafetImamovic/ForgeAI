@@ -34,5 +34,6 @@
         <toc-element topic="intro.md"/>
         <toc-element topic="Instalacija-i-Konfiguracija-Django-Allauth.md"/>
         <toc-element topic="Dodavanje-Google-i-GitHub-Autentifikacije.md"/>
+        <toc-element topic="11-4-Implementacija-Slanja-Email-Verifikacijskih-Email-ova.md"/>
     </toc-element>
 </instance-profile>
