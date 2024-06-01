@@ -83,6 +83,21 @@ ul {
     gap: 20px;
 }
 
+.card ul li h2
+{
+    margin-bottom: 10px;
+}
+
+.card ul li p
+{
+    margin-bottom: 10px;
+}
+
+.card ul li h1
+{
+    margin-bottom: 20px;
+}
+
 /* Form Styles */
 form {
     width: 100%;
@@ -94,14 +109,16 @@ form {
 
 input,
 button[type="submit"],
+button,
 .github-link,
 .google-link
  {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    transition: background-color 0.3s ease;
+    border: none;
 }
 
 /* Styling for GitHub link */
@@ -151,6 +168,16 @@ form p span a
 form p label
 {
     display: block;
+}
+
+button[type="submit"]:hover,
+button:hover,
+.github-link:hover,
+.google-link:hover
+{
+    background-color: #404040;
+    color: white;
+    transition: background-color 0.3s ease;
 }
         </style>
 

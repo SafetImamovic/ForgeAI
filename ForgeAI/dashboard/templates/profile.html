@@ -12,8 +12,14 @@
   </head>
   <body>
     {% block content %}
-	<h1>Logged in kao: {{ request.user.username }}</h1>
-    <a href="{% url 'account_logout' %}">Logout</a>
+      <h1>My Account</h1>
+      <p>Hello, {{ request.user.username }}</p>
+      
+      <form>
+          <button><a href="{% url 'my_products' %}">My Products</a></button>
+          <button><a href="{% url 'account_logout' %}">Logout</a></button>
+      </form>
+
     {% endblock %}
   </body>
 </html>
