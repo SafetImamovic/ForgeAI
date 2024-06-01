@@ -1,7 +1,7 @@
 /* myapp/static/css/styles.css */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #151515;
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,9 +12,12 @@ body {
 }
 
 h1 {
-    color: #333;
+    color: #ededed;
+    font-size: 6rem;
+    margin-right: 2rem;
 }
 
 p {
-    color: #666;
+    color: #a4a4a4;
+    font-size: 3.5rem;
 }

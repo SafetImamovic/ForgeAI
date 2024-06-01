@@ -143,3 +143,5 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 ACCOUNT_EMAIL_REQUIRED = True
+
+STATIC_ROOT = "/var/www/example.com/static/"

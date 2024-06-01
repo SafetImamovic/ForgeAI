@@ -1,7 +1,1 @@
-{% comment %} djlint:off {% load allauth %}<h1>{% slot default %}{% endslot %}</h1>{% endcomment %}
-
-{% load allauth %}
-<div class="myproject-h1 aa-{{ origin|slugify }}"
-     style="font-size: {% if "foo" in attrs.tags %}3{% else %}5{% endif %}rem; color: red;">
-    {% slot default %}{% endslot %}
-</div>
+{% comment %} djlint:off {% endcomment %}{% load allauth %}<h1>{% slot default %}{% endslot %}</h1>
