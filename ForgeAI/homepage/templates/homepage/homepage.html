@@ -1,14 +1,21 @@
-{% load static %}
+{% extends "allauth/layouts/base.html" %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ForgeAI Homepage</title>
+    {% load static %}
+    <link rel='stylesheet' type="text/css" href="{% static 'css/global.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1>ForgeAI</h1>
-    <p>AI MIDI Generator</p>
+
+    {% block content %}
+        <h1 id='main-title'>ForgeAI</h1>
+        <p id='main-subtitle'>AI MIDI Generator</p>
+    {% endblock %}
+        
 </body>
 </html>
