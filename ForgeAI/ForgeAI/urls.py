@@ -7,4 +7,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', views.profile, name='profile'),
     path('', include('homepage.urls')),
+    path('payments/', include('payments.urls')),
+    path('midi-generator/', include('midi_generator.urls')),
 ]

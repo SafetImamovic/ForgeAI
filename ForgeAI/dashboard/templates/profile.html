@@ -1,3 +1,19 @@
-<h1>Logged in kao: {{ request.user.username }}</h1>
+{% extends "allauth/layouts/base.html" %}
 
-<a href="{% url 'account_logout' %}">Logout</a>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ForgeAI | Profile</title>
+    {% load static %}
+    <link rel='stylesheet' type="text/css" href="{% static 'css/global.css' %}">
+  </head>
+  <body>
+    {% block content %}
+	<h1>Logged in kao: {{ request.user.username }}</h1>
+    <a href="{% url 'account_logout' %}">Logout</a>
+    {% endblock %}
+  </body>
+</html>

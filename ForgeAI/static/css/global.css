@@ -1,0 +1,26 @@
+*
+{
+    box-sizing: border-box !important;
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+body
+{
+    background-color: #151515 !important;
+    color: #ededed !important;
+}
+
+#main-title
+{
+    color: #ededed;
+    font-size: 6rem;
+    margin-right: 2rem;
+}
+
+#main-subtitle
+{
+    color: #a4a4a4;
+    font-size: 3.5rem;
+}

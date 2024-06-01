@@ -1,0 +1,22 @@
+{% extends "allauth/layouts/base.html" %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout canceled</title>
+  <link rel="stylesheet" href="style.css">
+
+  {% load static %}
+  <link rel='stylesheet' type="text/css" href="{% static 'css/global.css' %}">
+
+</head>
+<body>
+  {% block content %}
+  <section>
+    <p>Picked the wrong subscription? Shop around then come back to pay!</p>
+  </section>
+  {% endblock %}
+</body>
+</html>
+
+
