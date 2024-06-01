@@ -11,3 +11,5 @@ class CheckoutSessionRecord(models.Model):
     stripe_price_id = models.CharField(max_length=255)
     has_access = models.BooleanField(default=False)
     is_completed = models.BooleanField(default=False)
+    product_name = models.CharField(max_length=255, blank=True)
+    product_description = models.TextField(blank=True)

@@ -9,10 +9,8 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 from . import models
 
-
 DOMAIN = "http://localhost:8000"  # Move this to your settings file or environment variable for production.
 stripe.api_key = os.environ['STRIPE_SECRET_KEY']
-
 
 def subscribe(request) -> HttpResponse:
     # We login a sample user for the demo.
@@ -21,19 +19,13 @@ def subscribe(request) -> HttpResponse:
 
     return render(request, 'subscribe.html')
 
-
 def cancel(request) -> HttpResponse:
     return render(request, 'cancel.html')
 
-
 def success(request) -> HttpResponse:
-
     print(f'{request.session = }')
-
     stripe_checkout_session_id = request.GET['session_id']
-
     return render(request, 'success.html')
-
 
 def create_checkout_session(request) -> HttpResponse:
     price_lookup_key = request.POST['price_lookup_key']
@@ -50,12 +42,13 @@ def create_checkout_session(request) -> HttpResponse:
             success_url=DOMAIN + reverse('success') + '?session_id={CHECKOUT_SESSION_ID}',
             cancel_url=DOMAIN + reverse('cancel')
         )
-
-        # We connect the checkout session to the user who initiated the checkout.
+        
         models.CheckoutSessionRecord.objects.create(
             user=request.user,
             stripe_checkout_session_id=checkout_session.id,
             stripe_price_id=price_item.id,
+            product_name='ForgeAI PRO',
+            product_description='ForgeAI PRO MIDI Generator'
         )
 
         return redirect(
@@ -66,30 +59,22 @@ def create_checkout_session(request) -> HttpResponse:
         print(e)
         return HttpResponse("Server error", status=500)
 
-
 def direct_to_customer_portal(request) -> HttpResponse:
-    """
-    Creates a customer portal for the user to manage their subscription.
-    """
     checkout_record = models.CheckoutSessionRecord.objects.filter(
         user=request.user
-    ).last()  # For demo purposes, we get the last checkout session record the user created.
+    ).last()
 
     checkout_session = stripe.checkout.Session.retrieve(checkout_record.stripe_checkout_session_id)
 
     portal_session = stripe.billing_portal.Session.create(
         customer=checkout_session.customer,
-        return_url=DOMAIN + reverse('subscribe')  # Send the user here from the portal.
+        return_url=DOMAIN + reverse('my_products')
     )
     return redirect(portal_session.url, code=303)
 
 
 @csrf_exempt
 def collect_stripe_webhook(request) -> JsonResponse:
-    """
-    Stripe sends webhook events to this endpoint.
-    We verify the webhook signature and updates the database record.
-    """
     webhook_secret = os.environ.get('STRIPE_WEBHOOK_SECRET')
     signature = request.META["HTTP_STRIPE_SIGNATURE"]
     payload = request.body
@@ -109,12 +94,6 @@ def collect_stripe_webhook(request) -> JsonResponse:
 
 
 def _update_record(webhook_event) -> None:
-    """
-    We update our database record based on the webhook event.
-
-    Use these events to update your database records.
-    You could extend this to send emails, update user records, set up different access levels, etc.
-    """
     data_object = webhook_event['data']['object']
     event_type = webhook_event['type']
 

@@ -1,0 +1,25 @@
+{% extends "allauth/layouts/base.html" %}
+
+{% block content %}
+<h1>My Products</h1>
+
+{% if records %}
+  <ul>
+    {% for record in records %}
+      <li>
+        <h2>{{ record.product_name }}</h2>
+        <p>{{ record.product_description }}</p>
+        <h1>$15 / Month<h2>
+        <form action="{%  url  'direct-to-customer-portal' %}" method="POST">
+            {% csrf_token %}
+          <input type="hidden" id="session-id" name="session_id" value="" />
+          <button id="checkout-and-portal-button" type="submit"><a>Manage your Billing Information</a></button>
+        </form>
+        
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>You don't have any products yet.</p>
+{% endif %}
+{% endblock %}
