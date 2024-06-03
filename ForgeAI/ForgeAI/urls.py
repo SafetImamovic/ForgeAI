@@ -8,5 +8,4 @@ urlpatterns = [
     path('', include('homepage.urls')),
     path('payments/', include('payments.urls')),
     path('midi-generator/', include('midi_generator.urls')),
-    path('chatbot/', include('chatbot.urls')),
 ]
