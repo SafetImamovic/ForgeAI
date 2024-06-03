@@ -101,9 +101,9 @@
 </div>
 
 <script>
-  const messageList = document.querySelector('.message-list');
+  const messageList = document.querySelector('.messages-list');
   const messageForm = document.querySelector('.message-form');
-  const messagesInput = document.querySelector('.messages-input');
+  const messagesInput = document.querySelector('.message-input');
 
   messageForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -136,7 +136,7 @@
         'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
         'message': message
       })
-    });
+    })
     .then(response => response.json())
     .then(data => {
       const response = data.response;

@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from payments import models
 from payments.models import CheckoutSessionRecord
+from django.http import JsonResponse
+
 
 def sessions(request):
     if not request.user.is_authenticated:
@@ -11,6 +13,9 @@ def sessions(request):
     except CheckoutSessionRecord.DoesNotExist:
         return redirect('subscribe')
     
-    
+    if request.method == 'POST':
+        message = request.POST.get('message')
+        response = 'Hello'
+        return JsonResponse({'response': response})
 
     return render(request, 'sessions.html', context={'record': record})
