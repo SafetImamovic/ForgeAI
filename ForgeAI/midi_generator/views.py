@@ -2,7 +2,22 @@ from django.shortcuts import render, redirect
 from payments import models
 from payments.models import CheckoutSessionRecord
 from django.http import JsonResponse
+import openai
 
+
+
+def ask_openai(message):
+
+    response = openai.Completion.create (
+        model="text-davinci-003",
+        prompt=message,
+        max_tokens=100,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+    
+    answer = response.choice[0].text.strip()
 
 def sessions(request):
     if not request.user.is_authenticated:
