@@ -10,5 +10,7 @@ def sessions(request):
         record = CheckoutSessionRecord.objects.get(user=request.user)
     except CheckoutSessionRecord.DoesNotExist:
         return redirect('subscribe')
+    
+    
 
     return render(request, 'sessions.html', context={'record': record})
