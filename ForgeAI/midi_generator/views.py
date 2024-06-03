@@ -6,6 +6,9 @@ import openai
 
 
 
+openai_api_key = 'sk-proj-uusy9oKkBTUvfQKKJ91iT3BlbkFJYTSc8n6ZYhSlojwPmTei'
+openai.api_key = openai_api_key
+
 def ask_openai(message):
 
     response = openai.Completion.create (
@@ -18,6 +21,7 @@ def ask_openai(message):
     )
     
     answer = response.choice[0].text.strip()
+    return answer
 
 def sessions(request):
     if not request.user.is_authenticated:
@@ -30,7 +34,10 @@ def sessions(request):
     
     if request.method == 'POST':
         message = request.POST.get('message')
-        response = 'Hello'
+        response = ask_openai(message)
+        
+        chat = Chat(user=request.user, message=message, response=response)
+
         return JsonResponse({'message': message, 'response': response})
 
     return render(request, 'sessions.html', context={'record': record})
