@@ -72,16 +72,48 @@
       
       <ul class="list-unstyled messages-list">
         
-        <li class="message received">
-          <div class="message-text">
-            <div class="message-sender">
-              <b>MIDI generator</b>
+          <li class="message received">
+            <div class="message-text">
+              <div class="message-sender">
+                <b>MIDI generator</b>
+              </div>
+              <div class="message-content">
+                Pozdrav! Kako vam mogu pomoći?
+              </div>
             </div>
-            <div class="message-content">
-              Pozdrav! Kako vam mogu pomoći?
-            </div>
-          </div>
-        </li>
+          </li>
+
+        {% for chat in chats %}
+          
+            {% if chat.user == request.user %}
+            
+            <li class="message received">
+              <div class="message-text">
+                <div class="message-sender">
+                  <b>Vi</b>
+                </div>
+                <div class="message-content">
+                  {{ chat.message }}
+                </div>
+              </div>
+            </li>
+
+            <li class="message received">
+              <div class="message-text">
+                <div class="message-sender">
+                  <b>MIDI generator</b>
+                </div>
+                <div class="message-content">
+                  {{ chat.response }}
+                </div>
+              </div>
+            </li>
+
+            {% endif %}
+
+        {% endfor %}    
+
+
       </ul>
       
     </div>

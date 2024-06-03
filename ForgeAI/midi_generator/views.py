@@ -31,6 +31,8 @@ def sessions(request):
     except CheckoutSessionRecord.DoesNotExist:
         return redirect('subscribe')
     
+    chats = Chat.objects.filter(user=request.user).order_by('created_at')
+
     if request.method == 'POST':
         message = request.POST.get('message')
         response = "test response"
@@ -40,4 +42,4 @@ def sessions(request):
 
         return JsonResponse({'message': message, 'response': response})
 
-    return render(request, 'sessions.html', context={'record': record})
+    return render(request, 'sessions.html', {'chats': chats}  ,context={'record': record})
