@@ -6,12 +6,10 @@ from django.utils import timezone
 import google.generativeai as genai
 import os
 
-
-
 genai.configure(api_key=os.environ['GENAI_API_KEY'])
 model = genai.GenerativeModel(model_name='gemini-1.5-flash')
 
-midi_promt = """I need assistance in producing AI-generated text
+midi_prompt = """I need assistance in producing AI-generated text
     that I convert to music using MIDI files. Initially,
     I'll provide a description of the format I need for
     the textual representation of the music.
@@ -36,10 +34,10 @@ midi_promt = """I need assistance in producing AI-generated text
     1 for a whole note
     2 for a double whole note
     But could be any number between 0 and 2,
-    bocouse you know, musician are creative so why
+    because you know, musician are creative so why
     not 0.29 or 1.22, etc.
     With this format i need you generate a text that
-    i will covert in music in this format:
+    i will convert in music in this format:
     melody_pitch_duration_data = [
     (note, duration), (note, duration), (note,
     duration),
@@ -121,8 +119,33 @@ midi_promt = """I need assistance in producing AI-generated text
 
 def ask_gemani(message):
     response = model.generate_content(message)
-    
     return response.text
+
+
+
+def extract_midi_data(response):
+    start_idx = response.find("melody_pitch_duration_data = [")
+    if start_idx == -1:
+        return "No MIDI data found."
+    
+    end_idx = response.find("]", start_idx) + 1
+    midi_data = response[start_idx:end_idx]
+    return midi_data
+
+
+
+def extract_text_from_data(response):
+    start_idx = response.find("]")
+
+    if start_idx == -1:
+        raise ValueError("MIDI data not found in the response.")
+    
+    
+    text_data = response[start_idx:]
+    text_data = text_data.strip()
+
+    return text_data
+
 
 
 def sessions(request):
@@ -135,15 +158,18 @@ def sessions(request):
         return redirect('subscribe')
     
     chats = Chat.objects.filter(user=request.user).order_by('created_at')
+    chats = chats[15:]
 
     if request.method == 'POST':
         message = request.POST.get('message')
-        messageTest = midi_promt+message
-        response = ask_gemani(messageTest)
-        chat = Chat(user=request.user, message=message, response=response, created_at=timezone.now())
+        message_with_prompt = midi_prompt + message
+        response = ask_gemani(message_with_prompt)
+        midi_data = extract_midi_data(response)
+        text_data = extract_text_from_data(response)
+        chat = Chat(user=request.user, message=message, response=midi_data, created_at=timezone.now())
         chat.save()
-
-        return JsonResponse({'message': message, 'response': response})
+        responseTest = text_data.replace('\n', '<br>')
+        return JsonResponse({'message': message, 'response': responseTest})
     
     context = {'chats': chats, 'record': record}
     return render(request, 'sessions.html', context)
