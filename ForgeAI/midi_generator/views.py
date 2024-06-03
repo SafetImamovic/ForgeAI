@@ -41,5 +41,6 @@ def sessions(request):
         chat.save()
 
         return JsonResponse({'message': message, 'response': response})
-
-    return render(request, 'sessions.html', {'chats': chats}  ,context={'record': record})
+    
+    context = {'chats': chats, 'record': record}
+    return render(request, 'sessions.html', context)
