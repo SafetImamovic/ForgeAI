@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from payments.models import CheckoutSessionRecord
 from django.http import JsonResponse
-import openai
 from .models import Chat
 from django.utils import timezone
 import google.generativeai as genai
