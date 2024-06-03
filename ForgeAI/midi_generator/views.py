@@ -4,20 +4,19 @@ from django.http import JsonResponse
 import openai
 from .models import Chat
 from django.utils import timezone
+import google.generativeai as genai
+import os
 
-openai_api_key = 'sk-proj-uusy9oKkBTUvfQKKJ91iT3BlbkFJYTSc8n6ZYhSlojwPmTei'
-openai.api_key = openai_api_key
 
-def ask_openai(message):
-    response = openai.ChatCompletion.create(
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": message},
-        ],
-    )
+
+genai.configure(api_key=os.environ['GENAI_API_KEY'])
+model = genai.GenerativeModel(model_name='gemini-1.5-flash')
+
+
+def ask_gemani(message):
+    response = model.generate_content(message)
     
-    answer = response.choices[0].message.content.strip()
-    return answer
+    return response.text
 
 
 def sessions(request):
@@ -33,13 +32,7 @@ def sessions(request):
 
     if request.method == 'POST':
         message = request.POST.get('message')
-        response = [
-             "((60, 64, 67), 1)",    
-             "((64, 67, 71), 1)",     
-             "((67, 71, 74), 1)",    
-             "((65, 69, 72), 1)",     
-        ]
-        
+        response = ask_gemani(message)
         chat = Chat(user=request.user, message=message, response=response, created_at=timezone.now())
         chat.save()
 
