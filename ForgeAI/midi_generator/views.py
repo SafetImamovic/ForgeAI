@@ -3,7 +3,8 @@ from payments import models
 from payments.models import CheckoutSessionRecord
 from django.http import JsonResponse
 import openai
-
+from .models import Chat
+from django.utils import timezone
 
 
 openai_api_key = 'sk-proj-uusy9oKkBTUvfQKKJ91iT3BlbkFJYTSc8n6ZYhSlojwPmTei'
@@ -36,7 +37,9 @@ def sessions(request):
         message = request.POST.get('message')
         response = ask_openai(message)
         
-        chat = Chat(user=request.user, message=message, response=response)
+        chat = Chat(user=request.user, message=message, response=response, created_at=timezone.now())
+        chat.save()
+
 
         return JsonResponse({'message': message, 'response': response})
 
