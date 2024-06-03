@@ -9,16 +9,14 @@ openai_api_key = 'sk-proj-uusy9oKkBTUvfQKKJ91iT3BlbkFJYTSc8n6ZYhSlojwPmTei'
 openai.api_key = openai_api_key
 
 def ask_openai(message):
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=message,
-        max_tokens=100,
-        n=1,
-        stop=None,
-        temperature=0.5,
+    response = openai.ChatCompletion.create(
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": message},
+        ],
     )
     
-    answer = response.choices[0].text.strip()
+    answer = response.choices[0].message.content.strip()
     return answer
 
 
@@ -35,7 +33,12 @@ def sessions(request):
 
     if request.method == 'POST':
         message = request.POST.get('message')
-        response = "test response"
+        response = [
+             "((60, 64, 67), 1)",    
+             "((64, 67, 71), 1)",     
+             "((67, 71, 74), 1)",    
+             "((65, 69, 72), 1)",     
+        ]
         
         chat = Chat(user=request.user, message=message, response=response, created_at=timezone.now())
         chat.save()
