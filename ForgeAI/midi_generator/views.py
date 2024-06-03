@@ -16,6 +16,6 @@ def sessions(request):
     if request.method == 'POST':
         message = request.POST.get('message')
         response = 'Hello'
-        return JsonResponse({'response': response})
+        return JsonResponse({'message': message, 'response': response})
 
     return render(request, 'sessions.html', context={'record': record})
