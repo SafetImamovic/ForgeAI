@@ -1,18 +1,15 @@
 from django.shortcuts import render, redirect
-from payments import models
 from payments.models import CheckoutSessionRecord
 from django.http import JsonResponse
 import openai
 from .models import Chat
 from django.utils import timezone
 
-
 openai_api_key = 'sk-proj-uusy9oKkBTUvfQKKJ91iT3BlbkFJYTSc8n6ZYhSlojwPmTei'
 openai.api_key = openai_api_key
 
 def ask_openai(message):
-
-    response = openai.Completion.create (
+    response = openai.Completion.create(
         model="text-davinci-003",
         prompt=message,
         max_tokens=100,
@@ -21,8 +18,9 @@ def ask_openai(message):
         temperature=0.5,
     )
     
-    answer = response.choice[0].text.strip()
+    answer = response.choices[0].text.strip()
     return answer
+
 
 def sessions(request):
     if not request.user.is_authenticated:
@@ -35,11 +33,10 @@ def sessions(request):
     
     if request.method == 'POST':
         message = request.POST.get('message')
-        response = ask_openai(message)
+        response = "test response"
         
         chat = Chat(user=request.user, message=message, response=response, created_at=timezone.now())
         chat.save()
-
 
         return JsonResponse({'message': message, 'response': response})
 
