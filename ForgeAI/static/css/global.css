@@ -6,6 +6,11 @@
     font-family: Arial, Helvetica, sans-serif !important;
 }
 
+a
+{
+    color: #ededed !important;
+}
+
 body
 {
     background-color: #151515 !important;
