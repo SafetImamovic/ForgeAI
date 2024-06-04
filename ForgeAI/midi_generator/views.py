@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from payments.models import CheckoutSessionRecord
 from django.http import JsonResponse
-from .models import Chat
 from django.utils import timezone
+from .models import Chat
+from payments.models import CheckoutSessionRecord
 import google.generativeai as genai
 import os
 
@@ -13,7 +13,7 @@ model = genai.GenerativeModel(model_name='gemini-1.5-flash')
 
 
 
-midi_promt = """I need assistance in producing AI-generated text
+midi_prompt = """I need assistance in producing AI-generated text
     that I convert to music using MIDI files. Initially,
     I'll provide a description of the format I need for
     the textual representation of the music.
@@ -121,10 +121,36 @@ midi_promt = """I need assistance in producing AI-generated text
 """
 
 
-def ask_gemani(message):
-    response = model.chat()
-    
+
+def ask_gemini(message):
+    response = model.generate_content(message)
     return response.text
+
+
+
+def data_to_midi(data):
+    start_idx = data.find("[")
+    end_idx = data.find("]")
+
+    if start_idx == -1 or end_idx == -1:
+        raise ValueError("MIDI data not found in the provided text.")
+
+    midi_data = data[start_idx + 1: end_idx]
+    return midi_data
+
+
+
+def data_to_text(data):
+    start_idx = data.find("]")
+    if start_idx == -1:
+        return data
+
+    text_data = data[start_idx:]
+    text_data = text_data.replace("]", "")
+    text_data= text_data.replace("`", "")
+
+    return text_data.strip()
+
 
 
 def sessions(request):
@@ -141,24 +167,24 @@ def sessions(request):
     
     chats = Chat.objects.filter(user=request.user).order_by('created_at')
     
-    CHAT = ""
-    CHAT += midi_promt
-    
-    for i in range(0, len(chats)):
-        CHAT += chats[i].message
-        CHAT += ", "
+    chat_history = midi_prompt
+    chat_history = ''.join([chat.message + ', ' for chat in chats])
 
-    ask_gemani(CHAT)
+    historija = ask_gemini(chat_history)
 
     if request.method == 'POST':
         message = request.POST.get('message')
-        messageTest = midi_promt+message
-        CHAT += message
-        response = ask_gemani(CHAT)
-        chat = Chat(user=request.user, message=message, response=response, created_at=timezone.now())
+        chat_history += message + ", "
+        messageTest = midi_prompt + message
+        response = ask_gemini(messageTest)
+        
+        responseNoMidi = data_to_text(response)
+        responseMidi = data_to_midi(response)
+        
+        chat = Chat(user=request.user, message=message, response=responseNoMidi, created_at=timezone.now())
         chat.save()
 
-        return JsonResponse({'message': message, 'response': response})
-    
+        return JsonResponse({'message': message, 'response': responseNoMidi + "<br> </br> <br> </br> " + responseMidi})
+        
     context = {'chats': chats, 'record': record}
     return render(request, 'sessions.html', context)
