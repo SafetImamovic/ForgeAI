@@ -135,7 +135,112 @@
         background-color: rgb(70, 70, 70);
         transition: 0.2s ease;
         cursor: pointer;
+    }
+    
+    .card-header {
+        color: #fff;
+        padding: 10px 15px;
+        font-weight: bold;
+        border-radius: 5px 5px 0 0;
+        font-size: 20px;
+        text-align: center;
+      }
+
+    .chat-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh; 
+        background-color: black; 
+        padding: 10px;
+        border-radius: 5px;
+     
+    }
+      
+    .CARDD {
+        flex: 1; 
+        overflow-y: auto; 
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
+    }
+      
+    .card-body{
+        border: 1px solid lightgray;
     } 
+
+    .card-header {
+        background-color: black; 
+        color: #fff;
+        padding: 10px 15px;
+        font-weight: bold;
+        border-radius: 5px 5px 0 0;
+        font-size: 20px;
+    }
+      
+    .messages-box {
+        padding: 10px;
+    }
+      
+    .messages-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+      
+    .message {
+        margin-bottom: 15px;
+        display: flex; 
+        justify-content: flex-start; 
+    }
+      
+    .message.sent {
+        justify-content: flex-end; 
+        background-color: black;
+    }
+      
+    .message.received {
+        background-color: black;
+    }
+      
+    .message-text {
+        padding: 10px;
+        border-radius: 5px;
+        word-wrap: break-word; 
+        max-width: 70%; 
+    }
+      
+    .message-sender {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+      
+    .message-form {
+        display: flex;
+        justify-items: center;
+        justify-content: center;
+        padding-bottom: 60px;
+    }
+      
+    .message-input {
+        flex: 1;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        padding: 8px 14px;
+    }
+      
+    .btn-send {
+        border-radius: 5px;
+        background-color: #343a40;
+        color: lightgreen;
+        padding: 5px 10px; 
+        
+    }
+
+    .message-sender b,
+    .message-content
+    {
+        color: #ededed !important;
+    }
+
+    
     </style>
 
     </head>
@@ -218,12 +323,13 @@
                     {% endif %}
                 </ul>
             </div>
-        <div>
+        <div class="CARDD">
             {% block content %}
             {% endblock content %}
         {% endblock body %}
         {% block extra_body %}
         {% endblock extra_body %}
+        
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

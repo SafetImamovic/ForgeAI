@@ -1,73 +1,13 @@
 {% extends 'allauth/layouts/base.html' %}
 
-{% block styles %}
-<style>
-    body, html {
-      height: 100%;
-    }
-
-    .messages-box {
-      flex: 1;
-      overflow-y: auto;
-    }
-
-    .messages-list {
-      padding-left: 0;
-    }
-
-    .message {
-      margin-bottom: 15px;
-      list-style: none;
-    }
-
-    .message-text {
-      padding: 10px;
-      border-radius: 5px;
-    }
-
-    .sent {
-      background-color: #dcf8c6;
-      align-self: flex-end;
-    }
-
-    .received {
-      background-color: #f1f0f0;
-      align-self: flex-start;
-    }
-
-    .message-form {
-      display: flex;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 10px;
-      background-color: #f8f9fa;
-    }
-
-    .message-input {
-      flex: 1;
-      border-radius: 0;
-      border-right: none;
-    }
-
-    .btn-send {
-      border-radius: 0;
-    }
-
-    .chat-container {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-  </style>
-{% endblock %}
+{% block title %}Sessions{% endblock %}
 
 
 {% block content %}
 <div class="chat-container">
+  <div class="card-header">Chat</div>
+  <br><br>
   <div class="card flex-grow-1">
-    <div class="card-header bg-primary text-white">Chat</div>
     <div class="card-body messages-box">
       
       <ul class="list-unstyled messages-list">
@@ -77,6 +17,7 @@
               <div class="message-sender">
                 <b>MIDI generator</b>
               </div>
+              <br>
               <div class="message-content">
                 Pozdrav! Kako vam mogu pomoći?
               </div>
@@ -86,23 +27,25 @@
         {% for chat in chats %}
           
             {% if chat.user == request.user %}
-            
+            <br> <br>
             <li class="message received">
               <div class="message-text">
                 <div class="message-sender">
                   <b>Vi</b>
                 </div>
+                <br>
                 <div class="message-content">
                   {{ chat.message }}
                 </div>
               </div>
             </li>
-
+            <br> <br>
             <li class="message received">
               <div class="message-text">
                 <div class="message-sender">
                   <b>MIDI generator</b>
                 </div>
+                <br>
                 <div class="message-content">
                   {{ chat.response }}
                 </div>
@@ -136,6 +79,7 @@
   const messageList = document.querySelector('.messages-list');
   const messageForm = document.querySelector('.message-form');
   const messagesInput = document.querySelector('.message-input');
+  const chatContainer = document.querySelector('.chat-container');
 
   messageForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -148,10 +92,12 @@
     const messageElement = document.createElement('li');
     messageElement.classList.add('message', 'sent');
     messageElement.innerHTML = `
+    <br> <br>
       <div class="message-text">
         <div class="message-sender">
           <b>Vi</b>
         </div>
+        <br>
         <div class="message-content">
           ${message}
         </div>
@@ -175,19 +121,23 @@
       const messageElement = document.createElement('li');
       messageElement.classList.add('message', 'received');
       messageElement.innerHTML = `
+      <br> <br>
         <div class="message-text">
           <div class="message-sender">
             <b>MIDI generator</b>
           </div>
+          <br>
           <div class="message-content">
             ${response}
           </div>
         </div>
       `;
       messageList.appendChild(messageElement);
-      });
+      chatContainer.scrollTop = chatContainer.scrollHeight;
 
   });
+  });
+
 </script>
 
 {% endblock %}
