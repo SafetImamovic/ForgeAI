@@ -1,0 +1,160 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2024-06-04T18:33:50.0310029"><title>Google Cloud | ForgeAI Dokumentacija</title><script type="application/json" id="virtual-toc-data">[{"id":"implementacija-google-cloud-generative-language-api","level":0,"title":"Implementacija Google Cloud Generative Language API","anchor":"#implementacija-google-cloud-generative-language-api"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b259/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Google Cloud | ForgeAI Dokumentacija"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="ForgeAI Dokumentacija Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/google-cloud.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Google Cloud | ForgeAI Dokumentacija"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/google-cloud.html#webpage",
+    "url": "writerside-documentation/google-cloud.html",
+    "name": "Google Cloud | ForgeAI Dokumentacija",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "ForgeAI Dokumentacija Help"
+}</script><!-- End Schema.org --></head><body data-id="Google-Cloud" data-main-title="Google Cloud" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>ForgeAI Dokumentacija  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="Google-Cloud" id="Google-Cloud.md">Google Cloud</h1><section class="chapter"><h2 id="implementacija-google-cloud-generative-language-api" data-toc="implementacija-google-cloud-generative-language-api">Implementacija Google Cloud Generative Language API</h2><p id="rvayni_312"><code class="code" id="rvayni_313">Google Cloud</code> nudi <code class="code" id="rvayni_314">Generative Language</code><kbd class="keystroke" id="rvayni_315" data-bypass="true"><span class="keystroke__value">API</span></kbd> koji omogućava programerima izradu aplikacija <span class="control" id="rvayni_316">generativne umjetne inteligencije</span> koristeći <code class="code" id="rvayni_317">Gemini</code> modele. Ovi modeli su <span class="control" id="rvayni_318">multimodalni</span>, &scaron;to znači da mogu razumjeti i kombinirati različite tipove informacija kao &scaron;to su</p><ul class="list _bullet" id="rvayni_319"><li class="list__item" id="rvayni_320"><p>jezik</p></li><li class="list__item" id="rvayni_321"><p>slike</p></li><li class="list__item" id="rvayni_322"><p>audio</p></li><li class="list__item" id="rvayni_323"><p>video</p></li><li class="list__item" id="rvayni_324"><p>kod</p></li></ul><p id="rvayni_325"><a href="https://ai.google.dev/api/python/google/generativeai" id="rvayni_326" data-external="true" rel="noopener noreferrer">Google Cloud Dokumentacija za <code class="code" id="rvayni_327">Generative Language API</code> za Python</a></p><p id="rvayni_328">Za kori&scaron;tenje ovog <kbd class="keystroke" id="rvayni_329" data-bypass="true"><span class="keystroke__value">API-ja</span></kbd> u Python okruženju, bilo je potrebno instalirati <code class="code" id="rvayni_330">google-generativeai</code> paket:</p><div class="code-block" data-lang="bash">
+pip install google-generativeai
+</div><p id="rvayni_332">U dokumentaciji za <code class="code" id="rvayni_333">Generative Language API</code>, navedeni su primjeri kako koristiti <code class="code" id="rvayni_334">genai.GenerativeModel</code> za pristup <kbd class="keystroke" id="rvayni_335" data-bypass="true"><span class="keystroke__value">API-ju</span></kbd>. Kori&scaron;tenjem ovog modela, mogu se generirati sadržaji na osnovu unesenih podataka.</p><div class="tabs" id="rvayni_336" data-group="os" data-anchors="[macos-install,windows-install]"><div class="tabs__content" data-gtm="tab" id="windows-install" data-sync-tabs="windows" data-title="primjer Python file"><div class="code-block" data-lang="python" data-title="Python">
+        
+            import google.generativeai as genai
+            import os
+
+            genai.configure(api_key=os.environ['API_KEY'])
+            
+            model = genai.GenerativeModel(name='gemini-1.5-flash')
+            response = model.generate_content('Please summarise this document: ...')
+            
+            print(response.text)
+        
+        </div></div><div class="tabs__content" data-gtm="tab" id="macos-install" data-sync-tabs="macos" data-title=".env file"><div class="code-block" data-lang="bash" data-title="Shell">
+        
+            API_KEY=api_kljuc
+        
+        </div></div></div><aside class="prompt" data-type="tip" data-title="" id="rvayni_339"><p id="rvayni_340">Pod <code class="code" id="rvayni_341">CREDENTIALS</code> na <code class="code" id="rvayni_342">Google Cloud</code> Platformi se može pronaći <code class="code" id="rvayni_343">API_KEY</code> koji se koristi za autentifikaciju prilikom kori&scaron;tenja <code class="code" id="rvayni_344">Generative Language API</code>.</p></aside><p id="rvayni_345"><code class="code" id="rvayni_346">Razlike u verzijama paketa nakon instalacije</code>:</p><div class="code-comparer" id="rvayni_347" data-comparing="vertically"><div class="code-collapse" data-lang="bash" data-title="Before" data-is-expanded="false" data-synopsis="Person.kt">
+        Package            Version
+        ------------------ --------
+        asgiref            3.8.1
+        certifi            2024.2.2
+        cffi               1.16.0
+        charset-normalizer 3.3.2
+        cryptography       42.0.7
+        Django             5.0.6
+        django-allauth     0.63.2
+        idna               3.7
+        oauthlib           3.2.2
+        pip                24.0
+        pycparser          2.22
+        PyJWT              2.8.0
+        python-dotenv      1.0.1
+        requests           2.32.3
+        requests-oauthlib  2.0.0
+        sqlparse           0.5.0
+        stripe             9.9.0
+        typing_extensions  4.12.0
+        tzdata             2024.1
+        urllib3            2.2.1
+    </div><div class="code-collapse" data-lang="bash" data-title="After" data-is-expanded="false" data-synopsis="Person.kt">
+        Package                      Version
+        ---------------------------- --------
+        annotated-types              0.7.0
+        asgiref                      3.8.1
+        cachetools                   5.3.3
+        certifi                      2024.2.2
+        cffi                         1.16.0
+        charset-normalizer           3.3.2
+        colorama                     0.4.6
+        cryptography                 42.0.7
+        Django                       5.0.6
+        django-allauth               0.63.2
+        google-ai-generativelanguage 0.6.4
+        google-api-core              2.19.0
+        google-api-python-client     2.131.0
+        google-auth                  2.29.0
+        google-auth-httplib2         0.2.0
+        google-generativeai          0.6.0
+        googleapis-common-protos     1.63.1
+        grpcio                       1.64.1
+        grpcio-status                1.62.2
+        httplib2                     0.22.0
+        idna                         3.7
+        oauthlib                     3.2.2
+        pip                          24.0
+        proto-plus                   1.23.0
+        protobuf                     4.25.3
+        pyasn1                       0.6.0
+        pyasn1_modules               0.4.0
+        pycparser                    2.22
+        pydantic                     2.7.3
+        pydantic_core                2.18.4
+        PyJWT                        2.8.0
+        pyparsing                    3.1.2
+        python-dotenv                1.0.1
+        requests                     2.32.3
+        requests-oauthlib            2.0.0
+        rsa                          4.9
+        sqlparse                     0.5.0
+        stripe                       9.9.0
+        tqdm                         4.66.4
+        typing_extensions            4.12.0
+        tzdata                       2024.1
+        uritemplate                  4.1.1
+        urllib3                      2.2.1
+    </div></div><p id="rvayni_350">Primjer koda prikazuje kako se koristi <code class="code" id="rvayni_351">genai.GenerativeModel</code> za generiranje sadržaja na osnovu unesenih podataka. U ovom slučaju, generira obja&scaron;njenje teorije grupa na osnovu unesenog prompta.</p><div class="code-block" data-lang="python">
+
+import google.generativeai as genai
+import os
+
+genai.configure(api_key=os.environ['GENAI_API_KEY'])
+
+model = genai.GenerativeModel(model_name='gemini-1.5-flash')
+
+response = model.generate_content('Objasni sta je teorija grupa.')
+
+print(response.text)
+
+</div><p id="rvayni_353">Output:</p><div class="tabs" id="rvayni_354" data-anchors="[rvayni_355,rvayni_357]"><div class="tabs__content" data-gtm="tab" id="rvayni_355" data-title="Konzolni Output"><div class="code-block" data-lang="none" data-title="None">
+
+
+## Teorija grupa: Uvod u svijet simetrije
+
+Teorija grupa je grana matematike koja se bavi proučavanjem **grupa**, a grupa je matematički objekt koji se sastoji od skupa elemenata i operacije koja se nad tim elementima može izvršiti.
+
+Da bismo razumjeli što je grupa, zamislimo **simetrije** nekog objekta. Na primjer, kvadrat ima četiri simetrije:
+
+* **Rotacija za 90 stepeni** oko centra
+* **Rotacija za 180 stepeni** oko centra
+* **Rotacija za 270 stepeni** oko centra
+* **Refleksija** preko horizontale ili vertikale
+
+Sada, zamislite da te simetrije nazovemo **elementima grupe**. Kada izvršimo jednu simetriju, a zatim drugu, dobijemo **novu** simetriju. Na primjer, ako kvadrat rotiramo za 90 stepeni, a zatim ga reflektiramo preko horizontale, dobijemo novu simetriju (rotaciju za 270 stepeni).
+
+Ovaj proces kombinovanja simetrija (elemenata grupe) zove se **operacija grupe**.
+
+**Ključne osobine grupe:**
+
+* **Asocijativnost:** (a * b) * c = a * (b * c) (rezultat je isti bez obzira kako grupišemo elemente)
+* **Neutralni element:** postoji element *e* u grupi koji ne mijenja rezultat kada se kombinira s drugim elementima (e * a = a * e = a)
+* **Inverzni element:** za svaki element *a* u grupi postoji inverzni element *a⁻¹* koji poništava djelovanje *a* (a * a⁻¹ = a⁻¹ * a = e)
+
+**Primjeri grupa:**
+
+* **Grupa svih rotacija** pravilnog poligona
+* **Grupa svih permutacija** skupa elemenata
+* **Grupa svih simetrija** nekog geometrijskog tijela
+* **Grupa svih cjelobrojnih brojeva** s operacijom sabiranja
+
+**Značaj teorije grupa:**
+
+Teorija grupa ima široku primjenu u raznim granama matematike, fizike, hemije, informatike i drugih disciplina. Koristi se za:
+
+* Analiziranje struktura i simetrija
+* Razumijevanje i opisivanje kretanja
+* Proučavanje kodova i šifriranja
+* Razvijanje modela u fizici čestica
+* Razumijevanje kristalnih struktura u hemiji
+
+**Teorija grupa predstavlja moćan alat koji nam pomaže da razumijemo i organizujemo složene koncepte, a ona je i dalje u razvoju i otkrivanju novih primjena.**
+
+    
+</div></div><div class="tabs__content" data-gtm="tab" id="rvayni_357" data-title="Markdown Output"><p>## Teorija grupa: Uvod u svijet simetrije </p><p id="rvayni_358">Teorija grupa je grana matematike koja se bavi proučavanjem <span class="control" id="rvayni_359">grupa</span>, a grupa je matematički objekt koji se sastoji od skupa elemenata i operacije koja se nad tim elementima može izvr&scaron;iti.</p><p id="rvayni_360">Da bismo razumjeli &scaron;to je grupa, zamislimo <span class="control" id="rvayni_361">simetrije</span> nekog objekta. Na primjer, kvadrat ima četiri simetrije:</p><ul class="list _bullet" id="rvayni_362"><li class="list__item" id="rvayni_363"><p><span class="control" id="rvayni_364">Rotacija za 90 stepeni</span> oko centra</p></li><li class="list__item" id="rvayni_365"><p><span class="control" id="rvayni_366">Rotacija za 180 stepeni</span> oko centra</p></li><li class="list__item" id="rvayni_367"><p><span class="control" id="rvayni_368">Rotacija za 270 stepeni</span> oko centra</p></li><li class="list__item" id="rvayni_369"><p><span class="control" id="rvayni_370">Refleksija</span> preko horizontale ili vertikale</p></li></ul><p id="rvayni_371">Sada, zamislite da te simetrije nazovemo <span class="control" id="rvayni_372">elementima grupe</span>. Kada izvr&scaron;imo jednu simetriju, a zatim drugu, dobijemo <span class="control" id="rvayni_373">novu</span> simetriju. Na primjer, ako kvadrat rotiramo za 90 stepeni, a zatim ga reflektiramo preko horizontale, dobijemo novu simetriju (rotaciju za 270 stepeni).</p><p id="rvayni_374">Ovaj proces kombinovanja simetrija (elemenata grupe) zove se <span class="control" id="rvayni_375">operacija grupe</span>.</p><p id="rvayni_376"><span class="control" id="rvayni_377">Ključne osobine grupe:</span></p><ul class="list _bullet" id="rvayni_378"><li class="list__item" id="rvayni_379"><p><span class="control" id="rvayni_380">Asocijativnost:</span> (a * b) * c = a * (b * c) (rezultat je isti bez obzira kako grupi&scaron;emo elemente)</p></li><li class="list__item" id="rvayni_381"><p><span class="control" id="rvayni_382">Neutralni element:</span> postoji element <span class="emphasis" id="rvayni_383">e</span> u grupi koji ne mijenja rezultat kada se kombinira s drugim elementima (e * a = a * e = a)</p></li><li class="list__item" id="rvayni_384"><p><span class="control" id="rvayni_385">Inverzni element:</span> za svaki element <span class="emphasis" id="rvayni_386">a</span> u grupi postoji inverzni element <span class="emphasis" id="rvayni_387">a⁻&sup1;</span> koji poni&scaron;tava djelovanje <span class="emphasis" id="rvayni_388">a</span> (a * a⁻&sup1; = a⁻&sup1; * a = e)</p></li></ul><p id="rvayni_389"><span class="control" id="rvayni_390">Primjeri grupa:</span></p><ul class="list _bullet" id="rvayni_391"><li class="list__item" id="rvayni_392"><p><span class="control" id="rvayni_393">Grupa svih rotacija</span> pravilnog poligona</p></li><li class="list__item" id="rvayni_394"><p><span class="control" id="rvayni_395">Grupa svih permutacija</span> skupa elemenata</p></li><li class="list__item" id="rvayni_396"><p><span class="control" id="rvayni_397">Grupa svih simetrija</span> nekog geometrijskog tijela</p></li><li class="list__item" id="rvayni_398"><p><span class="control" id="rvayni_399">Grupa svih cjelobrojnih brojeva</span> s operacijom sabiranja</p></li></ul><p id="rvayni_400"><span class="control" id="rvayni_401">Značaj teorije grupa:</span></p><p id="rvayni_402">Teorija grupa ima &scaron;iroku primjenu u raznim granama matematike, fizike, hemije, informatike i drugih disciplina. Koristi se za:</p><ul class="list _bullet" id="rvayni_403"><li class="list__item" id="rvayni_404"><p>Analiziranje struktura i simetrija</p></li><li class="list__item" id="rvayni_405"><p>Razumijevanje i opisivanje kretanja</p></li><li class="list__item" id="rvayni_406"><p>Proučavanje kodova i &scaron;ifriranja</p></li><li class="list__item" id="rvayni_407"><p>Razvijanje modela u fizici čestica</p></li><li class="list__item" id="rvayni_408"><p>Razumijevanje kristalnih struktura u hemiji</p></li></ul><p id="rvayni_409"><span class="control" id="rvayni_410">Teorija grupa predstavlja moćan alat koji nam pomaže da razumijemo i organizujemo složene koncepte, a ona je i dalje u razvoju i otkrivanju novih primjena.</span></p></div></div></section><div class="last-modified">Last modified: 04 June 2024</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="11-4-implementacija-slanja-email-verifikacijskih-email-ova.html" class="navigation-links__prev">11.4 Implementacija Slanja Verifikacijskih Email-ova</a><a href="django-allauth-stiliziranje.html" class="navigation-links__next">Django Allauth Stiliziranje</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b259/app.js"></script></body></html>

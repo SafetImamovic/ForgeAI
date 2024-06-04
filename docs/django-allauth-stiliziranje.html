@@ -1,0 +1,616 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2024-06-04T18:33:50.0525789"><title>Django Allauth Stiliziranje | ForgeAI Dokumentacija</title><script type="application/json" id="virtual-toc-data">[{"id":"allauth-ablonski-sistemi","level":0,"title":"Allauth Šablonski Sistemi","anchor":"#allauth-ablonski-sistemi"},{"id":"globalni-css","level":0,"title":"Globalni CSS","anchor":"#globalni-css"},{"id":"kopiranje-i-modifikacija-ablona","level":0,"title":"Kopiranje i Modifikacija Šablona","anchor":"#kopiranje-i-modifikacija-ablona"},{"id":"modifikacija-kod-html-elemenata","level":0,"title":"Modifikacija kod html elemenata","anchor":"#modifikacija-kod-html-elemenata"},{"id":"dizajn-stranica","level":0,"title":"Dizajn Stranica","anchor":"#dizajn-stranica"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b259/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Django Allauth Stiliziranje | ForgeAI Dokumentacija"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="ForgeAI Dokumentacija Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/django-allauth-stiliziranje.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Django Allauth Stiliziranje | ForgeAI Dokumentacija"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/django-allauth-stiliziranje.html#webpage",
+    "url": "writerside-documentation/django-allauth-stiliziranje.html",
+    "name": "Django Allauth Stiliziranje | ForgeAI Dokumentacija",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "ForgeAI Dokumentacija Help"
+}</script><!-- End Schema.org --></head><body data-id="Django-Allauth-Stiliziranje" data-main-title="Django Allauth Stiliziranje" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs=""><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>ForgeAI Dokumentacija  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="Django-Allauth-Stiliziranje" id="Django-Allauth-Stiliziranje.md">Django Allauth Stiliziranje</h1><section class="chapter"><h2 id="allauth-ablonski-sistemi" data-toc="allauth-ablonski-sistemi">Allauth &Scaron;ablonski Sistemi</h2><p id="-kpbprc_16845"><code class="code" id="-kpbprc_16846">Allauth</code> nudi podrazumijevane &scaron;ablone za prikaze autentifikacije korisnika (prijava, registracija itd.) ali su oni <span class="control" id="-kpbprc_16847">obični</span> i <span class="control" id="-kpbprc_16848">bez stila</span>.</p><p id="-kpbprc_16849">Postoje dva načina za prilagođavanje izgleda i dojma:</p><ul class="list _bullet" id="-kpbprc_16850"><li class="list__item" id="-kpbprc_16851"><p id="-kpbprc_16852">Kopiranje svih &scaron;ablona u projekat i njihovo individualno stiliziranje. Ovo daje najvi&scaron;e kontrole, ali može biti nezgodno za složene postavke.</p></li><li class="list__item" id="-kpbprc_16853"><p id="-kpbprc_16854">Zamjena nekoliko centralnih &scaron;ablona koji kontroliraju opći raspored i stilove elemenata. Ovo je brže, ali manje fleksibilno.</p></li></ul><p id="-kpbprc_16855"><span class="control" id="-kpbprc_16856">Glavni &scaron;abloni</span> uključuju rasporede:</p><div class="table-wrapper"><table class="wide" id="-kpbprc_16857"><thead><tr class="ijRowHead" id="-kpbprc_16858"><th id="-kpbprc_16859"><p>bazni</p></th><th id="-kpbprc_16860"><p>ulazni</p></th><th id="-kpbprc_16861"><p>upravljanje nalogom</p></th></tr></thead><tbody><tr id="-kpbprc_16862"><td id="-kpbprc_16863"><p><code class="code" id="-kpbprc_16864">base.html</code></p></td><td id="-kpbprc_16865"><p><code class="code" id="-kpbprc_16866">entrance.html</code></p></td><td id="-kpbprc_16867"><p><code class="code" id="-kpbprc_16868">manage.html</code></p></td></tr></tbody></table></div><aside class="prompt" data-type="note" data-title="" id="-kpbprc_16869"><p id="-kpbprc_16870">Ovi &scaron;abloni se mogu pronaći u direktoriju <code class="code" id="-kpbprc_16871">ForgeAI (root)/venv/Lib/allauth/templates/allauth/layouts</code> u <code class="code" id="-kpbprc_16872">allauth</code> paketu.</p></aside><div class="code-collapse" data-lang="none" data-is-expanded="false" data-synopsis="Struktura Direktorija nakon kopiranja šablona">
+ForgeAI (root)
+└── ForgeAI
+    ├── ForgeAI
+    ├── static
+    │   ├── allauth_ui
+    │   │   └── input.css
+    │   └── css
+    │       └── global.css
+    ├── templates
+    │   ├── account
+    │   │   ├── email
+    │   │   │   ├── email_confirmation_message.txt
+    │   │   │   └── email_confirmation_subject.txt
+    │   │   ├── messages
+    │   │   │   ├── cannot_delete_primary_email.txt
+    │   │   │   ├── email_confirmation_failed.txt
+    │   │   │   ├── email_confirmation_sent.txt
+    │   │   │   ├── email_confirmed.txt
+    │   │   │   ├── email_deleted.txt
+    │   │   │   ├── logged_in.txt
+    │   │   │   ├── logged_out.txt
+    │   │   │   ├── login_code_sent.txt
+    │   │   │   ├── password_changed.txt
+    │   │   │   ├── password_set.txt
+    │   │   │   ├── primary_email_set.txt
+    │   │   │   └── unverified_primary_email.txt
+    │   │   ├── snippets
+    │   │   │   ├── already_logged_in.html
+    │   │   │   └── warn_no_email.html
+    │   │   ├── account_inactive.html
+    │   │   ├── base_entrance.html
+    │   │   ├── base_manage_email.html
+    │   │   ├── base_manage_password.html
+    │   │   ├── base_manage.html
+    │   │   ├── base_reauthenticate.html
+    │   │   ├── base.html
+    │   │   ├── confirm_login_code.html
+    │   │   ├── email_change.html
+    │   │   ├── email_confirm.html
+    │   │   ├── email.html
+    │   │   ├── login.html
+    │   │   ├── logout.html
+    │   │   ├── password_change.html
+    │   │   ├── password_reset_done.html
+    │   │   ├── password_reset_from_key_done.html
+    │   │   ├── password_reset_from_key.html
+    │   │   ├── password_reset.html
+    │   │   ├── password_set.html
+    │   │   ├── reauthenticate.html
+    │   │   ├── request_login_code.html
+    │   │   ├── signup_closed.html
+    │   │   ├── signup.html
+    │   │   ├── verification_sent.html
+    │   │   └── verified_email_required.html
+    │   ├── admin
+    │   │   └── base_site.html
+    │   ├── allauth
+    │   │   ├── elements
+    │   │   │   ├── alert.html
+    │   │   │   ├── badge.html
+    │   │   │   ├── button.html
+    │   │   │   ├── field.html
+    │   │   │   ├── fields.html
+    │   │   │   ├── form.html
+    │   │   │   ├── h1.html
+    │   │   │   ├── h2.html
+    │   │   │   ├── hr.html
+    │   │   │   ├── img.html
+    │   │   │   ├── p.html
+    │   │   │   ├── panel.html
+    │   │   │   ├── provider_list.html
+    │   │   │   ├── provider.html
+    │   │   │   └── table.html
+    │   │   └── layouts
+    │   │       ├── base.html
+    │   │       ├── entrance.html
+    │   │       └── manage.html
+    │   ├── mfa
+    │   │   ├── email
+    │   │   │   ├── recovery_codes_generated_message.txt
+    │   │   │   ├── recovery_codes_generated_subject.txt
+    │   │   │   ├── totp_activated_message.txt
+    │   │   │   ├── totp_activated_subject.txt
+    │   │   │   ├── totp_deactivated_message.txt
+    │   │   │   └── totp_deactivated_subject.txt
+    │   │   ├── messages
+    │   │   │   ├── recovery_codes_generated.txt
+    │   │   │   ├── totp_activated.txt
+    │   │   │   └── totp_deactivated.txt
+    │   │   ├── recovery_codes
+    │   │   │   ├── base.html
+    │   │   │   ├── download.txt
+    │   │   │   ├── generate.html
+    │   │   │   └── index.html
+    │   │   ├── totp
+    │   │   │   ├── activate_form.html
+    │   │   │   ├── base.html
+    │   │   │   └── deactivate_form.html
+    │   │   ├── authenticate.html
+    │   │   ├── base_entrance.html
+    │   │   ├── base_manage.html
+    │   │   ├── index.html
+    │   │   └── reauthenticate.html
+    │   └── socialaccount
+    │       ├── snippets
+    │       │   ├── provider_list.html
+    │       │   └── social_login.html
+    │       ├── authentication_error.html
+    │       ├── base.html
+    │       ├── connections.html
+    │       ├── login.html
+    │       └── signup.html
+</div><div class="tabs" id="-kpbprc_16874" data-anchors="[-kpbprc_16875,-kpbprc_16877,-kpbprc_16879]"><div class="tabs__content" data-gtm="tab" id="-kpbprc_16875" data-title="base.html"><div class="code-collapse" data-lang="python" data-title="Python" data-is-expanded="false" data-synopsis="base.html" data-disable-link-processing="true">{% load i18n %}
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        &lt;title&gt;
+            {% block head_title %}
+            {% endblock head_title %}
+        &lt;/title&gt;
+        {% block extra_head %}
+        {% endblock extra_head %}
+    &lt;/head&gt;
+    &lt;body&gt;
+        {% block body %}
+            {% if messages %}
+                &lt;div&gt;
+                    &lt;strong&gt;{% trans &quot;Messages:&quot; %}&lt;/strong&gt;
+                    &lt;ul&gt;
+                        {% for message in messages %}&lt;li&gt;{{ message }}&lt;/li&gt;{% endfor %}
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            {% endif %}
+            &lt;div&gt;
+                &lt;strong&gt;{% trans &quot;Menu:&quot; %}&lt;/strong&gt;
+                &lt;ul&gt;
+                    {% if user.is_authenticated %}
+                        {% url 'account_email' as email_url %}
+                        {% if email_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ email_url }}&quot;&gt;{% trans &quot;Change Email&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'account_change_password' as change_password_url %}
+                        {% if change_password_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ change_password_url }}&quot;&gt;{% trans &quot;Change Password&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'mfa_index' as mfa_url %}
+                        {% if mfa_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ mfa_url }}&quot;&gt;{% trans &quot;Two-Factor Authentication&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'usersessions_list' as usersessions_list_url %}
+                        {% if usersessions_list_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ usersessions_list_url }}&quot;&gt;{% trans &quot;Sessions&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'account_logout' as logout_url %}
+                        {% if logout_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ logout_url }}&quot;&gt;{% trans &quot;Sign Out&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                    {% else %}
+                        {% url 'account_login' as login_url %}
+                        {% if login_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ login_url }}&quot;&gt;{% trans &quot;Sign In&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'account_signup' as signup_url %}
+                        {% if signup_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ signup_url }}&quot;&gt;{% trans &quot;Sign Up&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                    {% endif %}
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            {% block content %}
+            {% endblock content %}
+        {% endblock body %}
+        {% block extra_body %}
+        {% endblock extra_body %}
+    &lt;/body&gt;
+&lt;/html&gt;
+</div></div><div class="tabs__content" data-gtm="tab" id="-kpbprc_16877" data-title="entrance.html"><div class="code-collapse" data-lang="python" data-title="Python" data-is-expanded="false" data-synopsis="entrance.html">
+        
+            {% extends &quot;allauth/layouts/base.html&quot; %}
+            {% block content %}{% endblock %}
+        
+    </div></div><div class="tabs__content" data-gtm="tab" id="-kpbprc_16879" data-title="manage.html"><div class="code-collapse" data-lang="python" data-title="Python" data-is-expanded="false" data-synopsis="manage.html">
+        
+            {% extends &quot;allauth/layouts/base.html&quot; %}
+            {% block content %}{% endblock %}
+        
+    </div></div></div></section><section class="chapter"><h2 id="globalni-css" data-toc="globalni-css">Globalni CSS</h2><p id="-kpbprc_16881">Globalni CSS fajl se može koristiti za stiliziranje elemenata na svim stranicama. Ovaj fajl: <code class="code" id="-kpbprc_16882">global.css</code> se nalazi u direktorij <code class="code" id="-kpbprc_16883">ForgeAI (root)/static/css</code> i uključuje u <code class="code" id="-kpbprc_16884">base.html</code> &scaron;ablon.</p><div class="code-block" data-lang="css" data-disable-link-processing="true">*
+{
+    box-sizing: border-box !important;
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+a
+{
+    color: #ededed !important;
+}
+
+body
+{
+    background-color: #151515 !important;
+    color: #ededed !important;
+}
+
+#main-title
+{
+    color: #ededed;
+    font-size: 6rem;
+    margin-right: 2rem;
+}
+
+#main-subtitle
+{
+    color: #a4a4a4;
+    font-size: 3.5rem;
+}</div></section><section class="chapter"><h2 id="kopiranje-i-modifikacija-ablona" data-toc="kopiranje-i-modifikacija-ablona">Kopiranje i Modifikacija &Scaron;ablona</h2><p id="-kpbprc_16886">i &scaron;ablone elemenata (zaglavlja, tipke, obrasci itd.). Zamjenom ovih &scaron;ablona elemenata, može promijeniti stilove na svim stranicama bez modifikacije sadržaja.</p><div class="tabs" id="-kpbprc_16887" data-anchors="[-kpbprc_16888,-kpbprc_16890]"><div class="tabs__content" data-gtm="tab" id="-kpbprc_16888" data-title="Originalni base.html u paketu"><div class="code-collapse" data-lang="markup" data-title="HTML" data-is-expanded="false" data-synopsis="{% load i18n %}" data-disable-link-processing="true">{% load i18n %}
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        &lt;title&gt;
+            {% block head_title %}
+            {% endblock head_title %}
+        &lt;/title&gt;
+        {% block extra_head %}
+        {% endblock extra_head %}
+    &lt;/head&gt;
+    &lt;body&gt;
+        {% block body %}
+            {% if messages %}
+                &lt;div&gt;
+                    &lt;strong&gt;{% trans &quot;Messages:&quot; %}&lt;/strong&gt;
+                    &lt;ul&gt;
+                        {% for message in messages %}&lt;li&gt;{{ message }}&lt;/li&gt;{% endfor %}
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            {% endif %}
+            &lt;div&gt;
+                &lt;strong&gt;{% trans &quot;Menu:&quot; %}&lt;/strong&gt;
+                &lt;ul&gt;
+                    {% if user.is_authenticated %}
+                        {% url 'account_email' as email_url %}
+                        {% if email_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ email_url }}&quot;&gt;{% trans &quot;Change Email&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'account_change_password' as change_password_url %}
+                        {% if change_password_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ change_password_url }}&quot;&gt;{% trans &quot;Change Password&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'mfa_index' as mfa_url %}
+                        {% if mfa_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ mfa_url }}&quot;&gt;{% trans &quot;Two-Factor Authentication&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'usersessions_list' as usersessions_list_url %}
+                        {% if usersessions_list_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ usersessions_list_url }}&quot;&gt;{% trans &quot;Sessions&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'account_logout' as logout_url %}
+                        {% if logout_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ logout_url }}&quot;&gt;{% trans &quot;Sign Out&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                    {% else %}
+                        {% url 'account_login' as login_url %}
+                        {% if login_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ login_url }}&quot;&gt;{% trans &quot;Sign In&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'account_signup' as signup_url %}
+                        {% if signup_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ signup_url }}&quot;&gt;{% trans &quot;Sign Up&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                    {% endif %}
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            {% block content %}
+            {% endblock content %}
+        {% endblock body %}
+        {% block extra_body %}
+        {% endblock extra_body %}
+    &lt;/body&gt;
+&lt;/html&gt;
+</div></div><div class="tabs__content" data-gtm="tab" id="-kpbprc_16890" data-title="Kopirani i modificirani base.html"><div class="code-collapse" data-lang="markup" data-title="HTML" data-is-expanded="false" data-synopsis="{% load i18n %}" data-disable-link-processing="true">{% load i18n %}
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css&quot; integrity=&quot;sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==&quot; crossorigin=&quot;anonymous&quot; referrerpolicy=&quot;no-referrer&quot; /&gt;
+        &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        &lt;title&gt;
+            {% block head_title %}
+            {% endblock head_title %}
+        &lt;/title&gt;
+        {% block extra_head %}
+        {% endblock extra_head %}
+
+        &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+        &lt;script&gt;
+            $(document).ready(function(){
+                $(&quot;a:contains('GitHub')&quot;).parent().addClass(&quot;github-link&quot;);
+                $(&quot;a:contains('Google')&quot;).parent().addClass(&quot;google-link&quot;);
+
+                $(&quot;a:contains('Google')&quot;).parent().parent().addClass(&quot;ul-removal&quot;);
+            });
+
+            
+        &lt;/script&gt;
+
+        {% load static %}
+        &lt;link rel='stylesheet' type=&quot;text/css&quot; href=&quot;{% static 'css/global.css' %}&quot;&gt;
+    &lt;style&gt;
+        a
+        {
+            text-decoration: none;
+            color: #ededed;
+        }
+
+        ul
+        {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-bar
+        {
+            height: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+            background-color: rgb(40, 40, 40);
+        }
+
+        .nav-bar ul
+        {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .nav-bar ul li
+        {
+            background-color: rgb(40, 40, 40);
+            padding: 1rem;
+            border-radius: 0.65rem;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.2s ease;
+        }
+
+        .nav-bar ul li:hover
+        {
+            background-color: rgb(70, 70, 70);
+            transition: 0.2s ease;
+        }
+
+        .auth-container
+        {
+            margin-top: 2rem !important;
+            width: 60%;
+            margin: auto;
+            background-color: rgb(40, 40, 40);
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 0.65rem;
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        .auth-container form p,
+        .auth-container form p label
+        {
+            margin: 1rem 0 !important;
+        }
+
+        .auth-container input[type=&quot;checkbox&quot;]
+        {
+            display: inline;
+            width: 1rem;
+            border-style: none;
+            border-radius: 50%;
+            scale: 1.25;
+        }
+
+    button,
+    input
+    {
+        background-color: rgb(140, 140, 140);
+        padding: 0.75rem;
+        border-radius: 0.65rem;
+        font-size: 1rem;
+        font-weight: 500;
+        border-style: none;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+        width: 100%;
+        
+        transition: 0.2s ease;
+        margin: 0.5rem 0;
+    }
+
+    button:hover
+    {
+        background-color: rgb(70, 70, 70);
+        transition: 0.2s ease;
+        cursor: pointer;
+    }
+    &lt;/style&gt;
+
+    &lt;/head&gt;
+    &lt;body&gt;
+        {% block body %}
+            {% if messages %}
+                &lt;div&gt;
+                    &lt;strong&gt;{% trans &quot;Messages:&quot; %}&lt;/strong&gt;
+                    &lt;ul&gt;
+                        {% for message in messages %}&lt;li&gt;{{ message }}&lt;/li&gt;{% endfor %}
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            {% endif %}
+            &lt;div class='nav-bar'&gt;
+                &lt;a href=&quot;/&quot;&gt;&lt;strong style='
+                        font-size: 30px;
+                    '&gt;{% trans &quot;ForgeAI&quot; %}&lt;/strong&gt;&lt;a&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;
+                        &lt;a href=&quot;{% url 'sessions' %}&quot;&gt;{% trans &quot;MIDI Generator&quot; %}&lt;/a&gt;
+                    &lt;/li&gt;
+                    {% if user.is_authenticated %}
+                    &lt;li&gt;
+                        &lt;a href=&quot;{% url 'profile' %}&quot;&gt;{% trans &quot;My Account&quot; %}&lt;/a&gt;
+                    &lt;/li&gt;
+                    
+                        {% url 'account_email' as email_url %}
+                        {% if email_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ email_url }}&quot;&gt;{% trans &quot;Change Email&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'account_change_password' as change_password_url %}
+                        {% if change_password_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ change_password_url }}&quot;&gt;{% trans &quot;Change Password&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'mfa_index' as mfa_url %}
+                        {% if mfa_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ mfa_url }}&quot;&gt;{% trans &quot;Two-Factor Authentication&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'usersessions_list' as usersessions_list_url %}
+                        {% if usersessions_list_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ usersessions_list_url }}&quot;&gt;{% trans &quot;Sessions&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'account_logout' as logout_url %}
+                        {% if logout_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ logout_url }}&quot;&gt;{% trans &quot;Sign Out&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                    {% else %}
+                        {% url 'account_login' as login_url %}
+                        {% if login_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ login_url }}&quot;&gt;{% trans &quot;Sign In&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        {% url 'account_signup' as signup_url %}
+                        {% if signup_url %}
+                            &lt;li&gt;
+                                &lt;a href=&quot;{{ signup_url }}&quot;&gt;{% trans &quot;Sign Up&quot; %}&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                    {% endif %}
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;div class='card'&gt;
+            {% block content %}
+            {% endblock content %}
+        {% endblock body %}
+        {% block extra_body %}
+        {% endblock extra_body %}
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</div></div></div><p id="-kpbprc_16892">Link za <a href="https://docs.allauth.org/en/latest/common/templates.html" id="-kpbprc_16893" data-external="true" rel="noopener noreferrer"><code class="code" id="-kpbprc_16894">Django Allauth</code> Dokumentaciju za Templates</a></p></section><section class="chapter"><h2 id="modifikacija-kod-html-elemenata" data-toc="modifikacija-kod-html-elemenata">Modifikacija kod <code class="code" id="-kpbprc_16896">html</code> elemenata</h2><p id="-kpbprc_16897">Radi lak&scaron;eg stiliziranja auth stranica koje koriste <code class="code" id="-kpbprc_16898">allauth</code>, okolo svakog elementa se može dodati <code class="code" id="-kpbprc_16899">div</code> sa klasom <code class="code" id="-kpbprc_16900">auth-element</code> koja će omogućiti lak&scaron;e stiliziranje elemenata.</p><p id="-kpbprc_16901">primjer kod <code class="code" id="-kpbprc_16902">signup.html</code>:</p><div class="code-comparer" id="-kpbprc_16903" data-comparing="vertically"><div class="code-collapse" data-lang="markup" data-title="Before" data-is-expanded="false" data-synopsis="{% extends &quot;account/base_entrance.html&quot; %}" data-disable-link-processing="true">{% extends &quot;account/base_entrance.html&quot; %}
+{% load allauth i18n %}
+{% block head_title %}
+    {% trans &quot;Signup&quot; %}
+{% endblock head_title %}
+{% block content %}
+    {% element h1 %}
+        {% trans &quot;Sign Up&quot; %}
+    {% endelement %}
+    {% setvar link %}
+        &lt;a href=&quot;{{ login_url }}&quot;&gt;
+        {% endsetvar %}
+        {% setvar end_link %}
+        &lt;/a&gt;
+    {% endsetvar %}
+    {% element p %}
+        {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
+    {% endelement %}
+    {% if not SOCIALACCOUNT_ONLY %}
+        {% url 'account_signup' as action_url %}
+        {% element form form=form method=&quot;post&quot; action=action_url tags=&quot;entrance,signup&quot; %}
+            {% slot body %}
+                {% csrf_token %}
+                {% element fields form=form unlabeled=True %}
+                {% endelement %}
+                {{ redirect_field }}
+            {% endslot %}
+            {% slot actions %}
+                {% element button tags=&quot;prominent,signup&quot; type=&quot;submit&quot; %}
+                    {% trans &quot;Sign Up&quot; %}
+                {% endelement %}
+            {% endslot %}
+        {% endelement %}
+    {% endif %}
+    {% if SOCIALACCOUNT_ENABLED %}
+        {% include &quot;socialaccount/snippets/login.html&quot; with page_layout=&quot;entrance&quot; %}
+    {% endif %}
+{% endblock content %}
+</div><div class="code-collapse" data-lang="markup" data-title="After" data-is-expanded="false" data-synopsis="{% extends &quot;account/base_entrance.html&quot; %}" data-disable-link-processing="true">{% extends &quot;account/base_entrance.html&quot; %}
+{% load allauth i18n %}
+{% block head_title %}
+    {% trans &quot;Signup&quot; %}
+{% endblock head_title %}
+{% block content %}
+&lt;div class=&quot;auth-container&quot;&gt;
+    {% element h1 %}
+        {% trans &quot;Sign Up&quot; %}
+    {% endelement %}
+    {% setvar link %}
+        &lt;a href=&quot;{{ login_url }}&quot;&gt;
+        {% endsetvar %}
+        {% setvar end_link %}
+        &lt;/a&gt;
+    {% endsetvar %}
+    {% element p %}
+        {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
+    {% endelement %}
+    {% if not SOCIALACCOUNT_ONLY %}
+        {% url 'account_signup' as action_url %}
+        {% element form form=form method=&quot;post&quot; action=action_url tags=&quot;entrance,signup&quot; %}
+            {% slot body %}
+                {% csrf_token %}
+                {% element fields form=form unlabeled=True %}
+                {% endelement %}
+                {{ redirect_field }}
+            {% endslot %}
+            {% slot actions %}
+                {% element button tags=&quot;prominent,signup&quot; type=&quot;submit&quot; %}
+                    {% trans &quot;Sign Up&quot; %}
+                {% endelement %}
+            {% endslot %}
+        {% endelement %}
+    {% endif %}
+    {% if SOCIALACCOUNT_ENABLED %}
+        {% include &quot;socialaccount/snippets/login.html&quot; with page_layout=&quot;entrance&quot; %}
+    {% endif %}
+    &lt;/div&gt;
+{% endblock content %}
+</div></div><aside class="prompt" data-type="note" data-title="" id="-kpbprc_16906"><p id="-kpbprc_16907">Potrebno je uočiti kako je dodan</p><div class="code-block" data-lang="none">
+&lt;div class=&quot;auth-element&quot;&gt;
+...
+&lt;/div&gt;
+</div></aside></section><section class="chapter"><h2 id="dizajn-stranica" data-toc="dizajn-stranica">Dizajn Stranica</h2><p id="-kpbprc_16909">Svaka stranica ima <code class="code" id="-kpbprc_16910">.nav-bar</code> <kbd class="keystroke" id="-kpbprc_16911" data-bypass="true"><span class="keystroke__value">CSS</span></kbd> klasu koja se može koristiti za stiliziranje navigacijske trake (nalazi se u <code class="code" id="-kpbprc_16912">base.html</code>).</p><aside class="prompt" data-type="warning" data-title="" id="-kpbprc_16913"><p id="-kpbprc_16914">Ne smije se mijenjati <code class="code" id="-kpbprc_16915">base.html</code> pod <code class="code" id="-kpbprc_16916">allauth</code> paketom jer će se promjene izgubiti prilikom ažuriranja paketa.</p></aside><aside class="prompt" data-type="note" data-title="" id="-kpbprc_16917"><p id="-kpbprc_16918">Smije se mijenjati <code class="code" id="-kpbprc_16919">base.html</code> pod <code class="code" id="-kpbprc_16920">templates</code> direktorijem (koji se nalazi pod ForgeAI) jer se ovi &scaron;abloni koriste prije &scaron;ablona iz <code class="code" id="-kpbprc_16921">allauth</code> paketa.</p></aside><section class="procedure-steps"><h3 id="procedura_stiliziranja" data-toc="procedura_stiliziranja">Procedura Stiliziranja</h3><ol class="list _decimal"><li class="list__item" id="-kpbprc_16922"><p>Ako se želi promijeniti stil globalno, dovoljno je promijeniti <code class="code" id="-kpbprc_16923">global.css</code> fajl.</p></li><li class="list__item" id="-kpbprc_16924"><p>Kako je definiran <code class="code" id="-kpbprc_16925">auth-element</code> u <code class="code" id="-kpbprc_16926">global.css</code> fajlu, svi elementi koji imaju ovu klasu će biti stilizirani prema definiciji u ovom fajlu (to su auth stranice). Ako se želi promijeniti stil, dovoljno je promijeniti <code class="code" id="-kpbprc_16927">global.css</code> fajl i <code class="code" id="-kpbprc_16928">style tag</code> unutar <code class="code" id="-kpbprc_16929">base.html</code>.</p></li><li class="list__item" id="-kpbprc_16930"><p>Ako se želi promijeniti stil samo jednog elementa, npr. <code class="code" id="-kpbprc_16931">signup.html</code>, dovoljno je promijeniti <code class="code" id="-kpbprc_16932">signup.html</code> fajl.</p></li></ol></section></section><div class="last-modified">Last modified: 04 June 2024</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="google-cloud.html" class="navigation-links__prev">Google Cloud</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.10.0-b259/app.js"></script></body></html>

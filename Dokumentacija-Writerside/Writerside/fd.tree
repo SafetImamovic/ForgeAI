@@ -36,4 +36,6 @@
         <toc-element topic="Dodavanje-Google-i-GitHub-Autentifikacije.md"/>
         <toc-element topic="11-4-Implementacija-Slanja-Email-Verifikacijskih-Email-ova.md"/>
     </toc-element>
+    <toc-element topic="Google-Cloud.md"/>
+    <toc-element topic="Django-Allauth-Stiliziranje.md"/>
 </instance-profile>
