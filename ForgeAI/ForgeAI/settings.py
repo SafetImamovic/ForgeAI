@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'payments',
     'homepage',
     'dashboard',
+    "allauth_ui",
+    "widget_tweaks",
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
