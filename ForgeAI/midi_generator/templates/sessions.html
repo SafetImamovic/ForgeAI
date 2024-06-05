@@ -27,7 +27,7 @@
         {% for chat in chats %}
           
             {% if chat.user == request.user %}
-            <br> <br>
+            {% comment %} <br> <br> {% endcomment %}
             <li class="message received">
               <div class="message-text">
                 <div class="message-sender">
@@ -39,7 +39,7 @@
                 </div>
               </div>
             </li>
-            <br> <br>
+            {% comment %} <br> <br> {% endcomment %}
             <li class="message received">
               <div class="message-text">
                 <div class="message-sender">
@@ -64,12 +64,29 @@
     <br><br>
     <br><br>
   </div>
-  <form class="message-form">
+  <form class="message-form" method="post">
     {%csrf_token%}
+    
+
+    
     <div class="input-group">
-      <input type="text" class="form-control message-input" placeholder="Type your message...">
+      <input type="text" class="form-control message-input" placeholder="Type your message..." name="message">
+
+      <label>
+        <input type="radio" name="choice" value="m" class="choice"> m
+      </label>
+      <label>
+          <input type="radio" name="choice" value="c" class="choice"> c
+      </label>
+      <label>
+          <input type="radio" name="choice" value="d" class="choice"> d
+      </label>
+
+
       <div class="input-group-append">
+
         <button type="submit" class="btn btn-primary btn-send">Send</button>
+        
       </div>
     </div>
   </form>
@@ -80,6 +97,7 @@
   const messageForm = document.querySelector('.message-form');
   const messagesInput = document.querySelector('.message-input');
   const chatContainer = document.querySelector('.chat-container');
+  const choice = document.querySelector('.choice');
 
   messageForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -92,7 +110,7 @@
     const messageElement = document.createElement('li');
     messageElement.classList.add('message', 'sent');
     messageElement.innerHTML = `
-    <br> <br>
+    {% comment %} <br> <br> {% endcomment %}
       <div class="message-text">
         <div class="message-sender">
           <b>Vi</b>
@@ -112,7 +130,8 @@
         'Content-Type': 'application/x-www-form-urlencoded'},
       body: new URLSearchParams({
         'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
-        'message': message
+        'message': message,
+        'choice': document.querySelector('input[name="choice"]:checked').value
       })
     })
     .then(response => response.json())
@@ -121,7 +140,7 @@
       const messageElement = document.createElement('li');
       messageElement.classList.add('message', 'received');
       messageElement.innerHTML = `
-      <br> <br>
+      {% comment %} <br> <br> {% endcomment %}
         <div class="message-text">
           <div class="message-sender">
             <b>MIDI generator</b>
