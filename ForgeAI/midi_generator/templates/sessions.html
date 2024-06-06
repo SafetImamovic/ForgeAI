@@ -1,8 +1,7 @@
 {% extends 'allauth/layouts/base.html' %}
-
 {% block title %}Sessions{% endblock %}
 
-
+{% load static %}
 {% block content %}
 <div class="chat-container">
   <div class="card-header">Chat</div>
@@ -34,6 +33,9 @@
                   <b>Vi</b>
                 </div>
                 <br>
+                <br>
+                
+
                 <div class="message-content">
                   {{ chat.message }}
                 </div>
@@ -47,6 +49,12 @@
                 </div>
                 <br>
                 <div class="message-content">
+                  <p>Tip: {{ chat.type }}</p>
+                  <a href="{{ chat.midi_link }}" download style="font-size: 30px;">Download MIDI <img src="{% static 'svg/download-solid.svg' %}" style="width: 30px;"></a>
+                  <p
+                    style="color: rgb(70, 70, 70)"
+                  >ID: {{ chat.id }}</p>
+                  <br>
                   {{ chat.response }}
                 </div>
               </div>
@@ -64,31 +72,59 @@
     <br><br>
     <br><br>
   </div>
-  <form class="message-form" method="post">
+  <form class="message-form" method="post" style="display: flex; flex-direction: column;">
     {%csrf_token%}
     
-
+    <div style="width: 100%; display: flex; flex-direction: column;">
+      
     
-    <div class="input-group">
-      <input type="text" class="form-control message-input" placeholder="Type your message..." name="message">
-
-      <label>
-        <input type="radio" name="choice" value="m" class="choice"> m
-      </label>
-      <label>
-          <input type="radio" name="choice" value="c" class="choice"> c
-      </label>
-      <label>
-          <input type="radio" name="choice" value="d" class="choice"> d
-      </label>
+    <div class="input-group" style='width: 100%; justify-content: center;' >
+      <input style="width: 100%;" type="text" class="form-control message-input" placeholder="Type your message..." name="message">
 
 
-      <div class="input-group-append">
-
-        <button type="submit" class="btn btn-primary btn-send">Send</button>
+      <div style="display: flex; justify-content: space-evenly; gap: 2rem;">
+        <div style='
+          background-color: rgb(40, 40, 40);
+          padding: 0.5rem;
+          border-radius: 10px;
+        '>
+        <label style='width: 33%;' for="m">Melody</label>
+          <input type="radio" name="choice" value="0" class="choice" checked id="m"
+            style="
+              scale: 150%;
+            "
+          > 
+        </div>
+        
+        <div style='
+        background-color: rgb(40, 40, 40);
+        padding: 0.5rem;
+        border-radius: 10px;
+      '>
+        <label style='width: 33%;' for='c'>Chords</label>
+          <input type="radio" name="choice" value="1" class="choice"id='c'
+          style="
+              scale: 150%;
+            "
+          > 
+        </div>
+        <div style='
+        background-color: rgb(40, 40, 40);
+        padding: 0.5rem;
+        border-radius: 10px;
+      '>
+        <label style='width: 33%;' for='d'>Drums</label> 
+          <input type="radio" name="choice" value="2" class="choice" id='d'
+          style="
+              scale: 150%;
+            "
+          > 
+        </div>
         
       </div>
+      
     </div>
+    <button type="submit" class="btn btn-primary btn-send">Send</button>
   </form>
 </div>
 
@@ -138,6 +174,9 @@
     .then(data => {
       const response = data.response;
       const messageElement = document.createElement('li');
+      const link = data.link;
+      const id = data.id;
+      const type = data.type;
       messageElement.classList.add('message', 'received');
       messageElement.innerHTML = `
       {% comment %} <br> <br> {% endcomment %}
@@ -147,6 +186,10 @@
           </div>
           <br>
           <div class="message-content">
+            <p>Tip: ${type}</p>
+            <a href="${link}" download style="font-size: 30px;">Download MIDI <img src="{% static 'svg/download-solid.svg' %}" style="width: 30px;"></a>
+            <p style="color: rgb(70, 70, 70)">ID: ${id}</p>
+            <br>
             ${response}
           </div>
         </div>

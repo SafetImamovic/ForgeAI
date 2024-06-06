@@ -5,7 +5,9 @@ from .models import Chat
 from payments.models import CheckoutSessionRecord
 import google.generativeai as genai
 import os
-from . import melody_gen
+from . import midi_gen
+from . import cloud_storage
+from google.cloud import storage
 
 genai.configure(api_key=os.environ['GENAI_API_KEY'])
 model = genai.GenerativeModel(model_name='gemini-1.5-pro')
@@ -224,7 +226,8 @@ text representation, we will create some
 awesome music!
 when writing the response, do not 
 DON'T write python after the ```
-keep the midi to a maximum of 4 bars long every time just 4 bars exactly
+keep the midi to a maximum of 4 bars long every time just 4 bars exactly\
+add additional text explaining the chords midi
 The next message is the actual prompt: 
 """, """
 I need assistance in producing AI-generated text
@@ -360,15 +363,10 @@ or Indian inspired), 12/8 (jazz-inspired)
 Now that you have a full understanding of the
 text representation, we will create some
 awesome drum patterns!
-Are you ready to start generating drums
-sequences?
-If so, respond with ‘YES’ and nothing else. Do not
-give me anything until I ask for some kind of
-music, just answer “YES” if you have the
-concept.
 when writing the response, do not 
 DON'T write python after the ```
 keep the midi to a maximum of 4 bars long every time just 4 bars exactly
+write additional text explaining the drum midi
 The next message is the actual prompt: 
 """
 ]
@@ -388,8 +386,6 @@ def data_to_midi(data):
     midi_data = data[start_idx: end_idx + 1]
     return midi_data
 
-
-
 def data_to_text(data):
     start_idx = data.find("]")
     if start_idx == -1:
@@ -400,8 +396,6 @@ def data_to_text(data):
     text_data= text_data.replace("`", "")
 
     return text_data.strip()
-
-
 
 def sessions(request):
     if not request.user.is_authenticated:
@@ -415,31 +409,61 @@ def sessions(request):
     if not record.has_access:
         return redirect('subscribe')
     
+    
+    current_file_path = os.path.abspath(__file__)
+
+    # Get the parent directory path
+    parent_directory_path = os.path.dirname(current_file_path)
+    parent_parent_directory_path = os.path.dirname(parent_directory_path)
+    
     chats = Chat.objects.filter(user=request.user).order_by('created_at')
     index = 0;
     
     
     if request.method == 'POST':
-        selected_option = request.POST.get('choice')
-        print("selected_option", selected_option)
+        index = int(request.POST.get('choice'))
 
         print("INDEX: ", index)
         
         message = request.POST.get('message')
         messageTest = str(midi_prompts[index]) + str(message)
         response = ask_gemini(messageTest)
+        print(response)
         
         responseNoMidi = data_to_text(response)
         responseMidi = data_to_midi(response)
         
-        chat = Chat(user=request.user, message=message, response=responseNoMidi, created_at=timezone.now())
-        chat.save()
-
-        melody_gen.create_melody(responseMidi, "midi")
+        type=''
+        if index == 0:
+            type='Melody'
+        elif index == 1:
+            type='Chords'
+        elif index == 2:
+            type='Drums'
+        
+        chat = Chat(user=request.user, message=message, response=responseNoMidi, created_at=timezone.now(), type=type)
+        id = chat.save()
+    
+        if index == 0:
+            midi_gen.create_melody(responseMidi, id)
+        elif index == 1:
+            midi_gen.create_chords(responseMidi, id)
+        elif index == 2:
+            midi_gen.create_drums(responseMidi, id)
+        
+        path = parent_parent_directory_path+'\\'+str(id)+'.mid'
+        cloud_storage.upload_to_bucket(str(id)+'.mid', path, "midi-files-forge-ai")
+        link = cloud_storage.generate_signed_url(str(id)+'.mid', "midi-files-forge-ai")
+        
+        instance = Chat.objects.get(id=id)
+        instance.midi_link = link
+        instance.save()
+        
+        print(link)
         print(responseMidi)
         print(responseNoMidi)
         
-        return JsonResponse({'message': message, 'response': responseNoMidi})
+        return JsonResponse({'message': message, 'response': responseNoMidi, 'link': link, 'id': id, 'index': index, 'type': type})
 
     
     context = {'chats': chats, 'record': record}

@@ -1,38 +1,6 @@
 import mido
 from mido import Message, MidiFile, MidiTrack
 
-drum_pitch_duration_data = [
-    ((36,), 0.125, 127),  # Bass Drum 1
-    ((38, 44), 0.25, 110),  # Snare Drum 1 + Pedal Hi-hat
-    ((38,), 0.125, 115),  # Snare Drum 1
-    ((36,), 0.1875, 127),  # Bass Drum 1
-    ((40,), 0.125, 120),  # Snare Drum 2
-    ((38, 44), 0.25, 127),  # Snare Drum 1 + Pedal Hi-hat
-    ((51,), 0.375, 115),  # Ride Cymbal 1
-    ((40, 44), 0.125, 120),  # Snare Drum 2 + Pedal Hi-hat
-    ((38,), 0.25, 115),  # Snare Drum 1
-    ((36,), 0.375, 127),  # Bass Drum 1
-    ((48, 49), 0.125, 120),  # High Tom 2 + Crash Cymbal 1
-    ((36, 42), 0.1875, 127),  # Bass Drum 1 + Closed Hi-hat
-    ((51,), 0.375, 115),  # Ride Cymbal 1
-    ((38, 44), 0.125, 120),  # Snare Drum 1 + Pedal Hi-hat
-    ((51,), 0.125, 115),  # Ride Cymbal 1
-    ((40,), 0.125, 120),  # Snare Drum 2
-    ((38, 44), 0.375, 127),  # Snare Drum 1 + Pedal Hi-hat
-    ((36, 49), 0.25, 127),  # Bass Drum 1 + Crash Cymbal 1
-    ((40, 44), 0.125, 120),  # Snare Drum 2 + Pedal Hi-hat
-    ((36,), 0.25, 115),  # Bass Drum 1
-    ((38,), 0.375, 127),  # Snare Drum 1
-    ((51, 49), 0.125, 120),  # Ride Cymbal 1 + Crash Cymbal 1
-    ((38, 44), 0.1875, 127),  # Snare Drum 1 + Pedal Hi-hat
-    ((51,), 0.375, 115),  # Ride Cymbal 1
-    ((36, 44), 0.125, 120),  # Bass Drum 1 + Pedal Hi-hat
-    ((51,), 0.125, 115),  # Ride Cymbal 1
-    ((38,), 0.125, 120),  # Snare Drum 1
-    ((51, 44), 0.375, 127),  # Ride Cymbal 1 + Pedal Hi-hat
-    ((38, 49), 0.25, 127),  # Snare Drum 1 + Crash Cymbal 1
-]
-
 # Create a new MIDI file
 mid = MidiFile()
 track = MidiTrack()

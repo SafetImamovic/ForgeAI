@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "hopeful-nova-425012-i7",
+  "private_key_id": "e45a8c988cdca019f9743171b6c20e86d0e188cc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDPP0zDK0Ii5/lU\nOT3btBxf8asNhRnmsEfDC4e1vmO0p7lKrhcEcJRwQpLEQXzbEbxYbvASWjK+54ZW\nZP5y9vieik5ryJDUdgJ4X+cT0ZwUQcXHgh2fDNLDOP6GhMT526RmKn4hvsxjCX+L\nW6VeyKgmpZlim3IudYGGBygdnyTPhqIMXcIblHXVrakJisBH/+rbsfk3pdf+Wxgg\nWJJN/kz0Kt8fnL6qlPH3YJTPj/qA3euHk7Ed5a7b0DXpzOzWFArvfJpb8ZI/T3YM\nWdlR1dzTg3QyTPLImM8gsX09CbC/laHv0ldAWbZ6tLh/2pcKmn7Ikz/DoWzwrnu/\nlbEi1dotAgMBAAECggEAMjmidkgFAqWaQIWQzq5TFBNiw2eG0+fTtFqWfH6T9kOR\nfZ48GMjZyGzx2ZsPUZ32Oa5FAwWV97rvTP+zxJPCw9U71RYptzuUNKz1ONHbE/Ou\npT+Mwy9d4o7s7BfADtdie5n/sFjnenbiUJkYtiRFz/vg9Ms8PDMg/SS93ZPkXWBQ\n/d7UW0Gf1UZQVE/wVyR5UtNHuHB5BNFyemkp50VfJ03hTk8Zeu/QkGk9T2XPLVqG\nb58L986ly8ZceAi+YTspLgKpp+7CZJRoaxf2zVlnipHgghE/qh11NIYYB7n350f5\nF06SbYA7NGM9TWLuLZfEPs9D9drVHfydS/pdiukO0QKBgQD2f0xp1ma2MaFxKsry\nXuKeaaBqIGRbomC5WgCmsEBszrVKaqryBEG9GK5DuO8qIAEhM2G6znXyOsxQDImp\nA3aO79NCh9dhXtCzbGTICG7ZWI3Ih6LKZJwk+72jMHB+3AGOsCRSHGCxhMjqSXGt\nP0hau6TDhZXEvePyvrOkP50kxQKBgQDXPKPVPAxHAScy3xNJdvN2xIEa+oeeEwCs\n/+AsBKcun7NSDedA2sDaCgzRXT2nDmnrCewH+nd0s7XCm2hg/UODWIx9D3e2Z3MM\n38OFdn+OOkcn3h5RsjMK97pGrH4fOlqI4EfTagdWVRGZm7OzklfjvruvFfh140iX\npT9Z557GSQKBgC36EIatNvtExpgVI0WR7TMfAIzK/e0ZnHD2GKj+twWUiLwYqUn7\nAUgEEn0PQYzZ61wF+XSejeFgljtYG1UrEDIZCY6fR80hokvVK/cjm4luuwNsSTD3\nEyjSy8xkfJcs8h1rPVsTb/Wsjs0kZc+qvhQua80MXaMUyC++4kMAmo8BAoGACTIe\nDc4y+BWkhxfgyxK59CkRGwX5JVfKf5mvCjJosiVAlBDkAHFYK/ih84/4QlrrS49w\n9iZNVD8ZVOcu3nXznHj8B5vRkYl58OLeh6U4besvfxSOVw81/xH2c26LNOpZU9/B\nMdcl2RppVhbA5rsp5iEQA7r8kozTXSdCPaUXs4ECgYEAhODHotjHlKN6nhTMCAGk\n4JgI6O1jz1CQO79vvguCnuB7glf/BSO6iDikOzYjZjSFpvQeOW+sg5SSk6rWpjqT\nsOnMbuZIaixzz12rjIL1JbqERP8wuZPU55TScqFglIxRDGwL1MCoV7Wxt7ZCXyIw\nolPkXf90cMEJgQ0wX9fizxI=\n-----END PRIVATE KEY-----\n",
+  "client_email": "cloud-storage@hopeful-nova-425012-i7.iam.gserviceaccount.com",
+  "client_id": "113910057533592856521",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cloud-storage%40hopeful-nova-425012-i7.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
