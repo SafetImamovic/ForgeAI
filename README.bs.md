@@ -1,5 +1,5 @@
-<a href="https://github.com/SafetImamovic/ForgeAI/blob/main/README.md"><img src="https://img.shields.io/badge/Lang-EN-red" alt="Lang EN" height="23"></a> <a href="https://github.com/SafetImamovic/ForgeAI/blob/main/README.bs.md"><img src="https://img.shields.io/badge/Lang-BS-blue" alt="Lang BS" height="24"></a>
-<a href="https://safetimamovic.github.io/"><img src="https://img.shields.io/badge/Projektna%20Dokumentacija-black" alt="Projektna Dokumentacija" height="28"></a>
+<a href="https://github.com/SafetImamovic/ForgeAI/blob/main/README.md"><img src="https://img.shields.io/badge/Lang-EN-red" alt="Lang EN" height="24"></a> <a href="https://github.com/SafetImamovic/ForgeAI/blob/main/README.bs.md"><img src="https://img.shields.io/badge/Lang-BS-blue" alt="Lang BS" height="24"></a>
+<a href="https://safetimamovic.github.io/ForgeAI"><img src="https://img.shields.io/badge/Projektna%20Dokumentacija-black" alt="Projektna Dokumentacija" height="28"></a>
 
 # ForgeAI
 
